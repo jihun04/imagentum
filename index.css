@@ -1,5 +1,30 @@
-.form,
-.greetings {
+body {
+  font-size: 30px;
+  color: midnightblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.js-form input {
+  font-size: 40px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(152, 25, 97, 0.8);
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+}
+.js-form input:focus {
+  font-size: 30px;
+  border-bottom: 10px solid rgba(152, 25, 97, 0.8);
+}
+.js-form input::placeholder {
+  color: rgb(152, 25, 97);
+}
+
+.none {
+  display: none;
 }
 
 .showing {
