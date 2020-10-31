@@ -25,7 +25,6 @@ function askForName() {
 
 function paintGreeting(text) {
   greeting.classList.add(SHOWING_CN);
-
   form.classList.remove(SHOWING_CN);
   greeting.innerText = `Hello ${text}`;
 }
@@ -39,8 +38,18 @@ function loadName() {
   }
 }
 
+function handleClick(){
+  removeName();
+}
+
+function removeName(){
+  localStorage.removeItem(USER_LS);
+  loadName()
+}
+
 function init() {
   loadName();
+  greeting.addEventListener("click", handleClick);
 }
 
 init();
