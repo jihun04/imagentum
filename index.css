@@ -117,7 +117,7 @@ body {
 .toDo-bar {
   width: 100%;
   height: 10px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .appear-toDo-bar {
   animation: appearToDoBar 0.4s ease-in-out;
@@ -213,7 +213,12 @@ body {
 }
 .toDo-text {
   width: 160px;
+  overflow-x: auto;
   color: rgba(255, 255, 255, 0.9);
+}
+.toDo-text::-webkit-scrollbar {
+  color: rgba(0, 0, 0, 0);
+  height: 0;
 }
 .none {
   display: none;
