@@ -1,8 +1,14 @@
 const toDoForm = document.querySelector(".ja-toDoFrom"),
 toDoInput = toDoForm.querySelector("input"),
-toDoList = document.querySelector(".js-toDoList")
+toDoList = document.querySelector(".js-toDoList"),
+toDoBar = document.querySelector(".toDo-bar");
 
-const TODOS_LS = "toDos";
+const TODOS_LS = "toDos",
+TODOTEXT_CN = "toDo-text",
+CLOSELIST_CN = "toDoList--close",
+OPENLIST_CN = "toDoList--open",
+APPEARTODOBAR_CN = "appear-toDo-bar",
+DISAPPEARTODOBAR_CN = "disappear-toDo-bar";
 
 let toDos = [];
 
@@ -24,14 +30,17 @@ function saveTodos() {
 function paintToDo(text) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
+    const toDoText = document.createElement("div");
     const span = document.createElement("span");
     const newId = toDos.length + 1;
     delBtn.innerText = "X";
     delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
     li.appendChild(delBtn);
-    li.appendChild(span);
+    li.appendChild(toDoText);
     li.id = newId;
+    toDoText.appendChild(span);
+    toDoText.classList.add(TODOTEXT_CN);
     toDoList.appendChild(li);
     const toDoObj = {
         text: text,
@@ -48,6 +57,20 @@ function handleToDoSubmit(event) {
     toDoInput.value = "";
 }
 
+function handleToDoFormClick() {
+    toDoList.classList.remove(CLOSELIST_CN);
+    toDoList.classList.add(OPENLIST_CN);
+    toDoBar.classList.remove(DISAPPEARTODOBAR_CN);
+    toDoBar.classList.add(APPEARTODOBAR_CN);
+}
+
+function handleToDoBarClick() {
+    toDoList.classList.add(CLOSELIST_CN);
+    toDoList.classList.remove(OPENLIST_CN);
+    toDoBar.classList.add(DISAPPEARTODOBAR_CN);
+    toDoBar.classList.remove(APPEARTODOBAR_CN);
+}
+
 function loadToDos() {
     const loadedToDos = localStorage.getItem(TODOS_LS);
     if(loadedToDos !== null) {
@@ -59,7 +82,9 @@ function loadToDos() {
 }
 
 function init() {
-    loadToDos()
-    toDoForm.addEventListener("submit", handleToDoSubmit)
+    loadToDos();
+    toDoForm.addEventListener("submit", handleToDoSubmit);
+    toDoForm.addEventListener("click", handleToDoFormClick);
+    toDoBar.addEventListener("click", handleToDoBarClick);
 }
 init()

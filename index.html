@@ -7,21 +7,35 @@
         <title>Monmentun</title>
     </head>
     <body>
-        <div class="js-clock">
-            <h1 class="js-title">00:00</h1>
+        <div class="column">
+            <div class="column_column">
+                <span class="js-weather"></span>
+            </div>
+            <div class="column_column">
+                <span class="js-img-name"></span>
+            </div>
         </div>
-        <form class="js-form none">
-            <input required type="text" placeholder="What is your name"/>
-        </form>
-        <h4 class="js-greetings  none">Hello</h4>
-        <form class="ja-toDoFrom">
-            <input type="text" placeholder="Write a to do"/>
-        </form>
-        <ul class="js-toDoList ">
-        </ul>
-        <span class="js-weather"></span>
+        <div class="column">
+            <div class="js-clock">
+                <h1 class="js-title">--:--:--</h1>
+            </div>
+            <form class="js-form none">
+                <input required type="text" placeholder="What is your name"/>
+            </form>
+            <h4 class="js-greetings  none"></h4>
+        </div>
+        <div class="column">
+            <div class="toDo-box">
+                <form class="ja-toDoFrom">
+                    <input type="text" placeholder="Write a to do"/>
+                </form>
+                <div class="toDo-bar appear-toDo-bar"></div>
+                <ul class="js-toDoList toDoList--open">
+                </ul>
+            </div>
+        </div>
         <script src="clock.js"></script>
-        <script src="gretting.js"></script>
+        <script src="greeting.js"></script>
         <script src="todo.js"></script>
         <script src="bg.js"></script>
         <script src="weather.js"></script>
