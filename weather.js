@@ -12,7 +12,7 @@ function getWeather(lat, lng) {
     .then(function(json) {
         const temperature = json.main.temp;
         const place = json.name;
-        weather.innerText = `${temperature}° ${place}`;
+        weather.innerText = `${temperature}° - ${place}`;
     })
 }
 
@@ -52,6 +52,7 @@ function loadCoords() {
 
 function init() {
     loadCoords();
+    setInterval(loadCoords, 600000)
 }
 
 init();
