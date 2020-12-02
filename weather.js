@@ -52,6 +52,7 @@ function loadCoords() {
 
 function init() {
     loadCoords();
+    setInterval(loadCoords, 600000)
 }
 
 init();
