@@ -1,4 +1,5 @@
-const weather = document.querySelector(".js-weather");
+const weather = document.querySelector(".js-weather"),
+temperatureIcon = document.querySelector(".js-weather-icon");
 
 const API_KEY = "85a868745925286701deacff570bc78b"
 const COORDS = "coords",
@@ -17,20 +18,17 @@ function getWeather(lat, lng) {
     .then(function(json) {
         const temperature = json.main.temp;
         const place = json.name;
-        const icon = document.createElement("i");
-        const weatherText = weather.parentNode;
         weather.innerText = `${temperature}° (${place})`;
         if(temperature >= 29) {
-            icon.className = FAS;
-            icon.classList.add(TEMPERATUREHIGHICON);
+            temperatureIcon.className = FAS;
+            temperatureIcon.classList.add(TEMPERATUREHIGHICON);
         } else if(temperature <=28 && temperature >= 18) {
-            icon.className = FAR;
-            icon.classList.add(SMILEICON);
+            temperatureIcon.className = FAR;
+            temperatureIcon.classList.add(SMILEICON);
         } else {
-            icon.className = FAS;
-            icon.classList.add(TEMPERATURELOWICON);
+            temperatureIcon.className = FAS;
+            temperatureIcon.classList.add(TEMPERATURELOWICON);
         }
-        weatherText.prepend(icon);
     })
 }
 

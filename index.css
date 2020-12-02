@@ -147,7 +147,7 @@ body {
   text-align: center;
 }
 .toDo-bar:hover {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.6);
 }
 .toDo-bar span {
   position: relative;
