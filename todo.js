@@ -15,8 +15,10 @@ CLOSELIST_CN = "toDoList--close",
 OPENLIST_CN = "toDoList--open",
 APPEARTODOBAR_CN = "appear-toDo-bar",
 DISAPPEARTODOBAR_CN = "disappear-toDo-bar",
+APPEARTODOLISTSBTNS = "appear-toDoLists-btns",
+DISAPPEARTODOLISTSBTNS = "disappear-toDoList-btns",
 TODOLISTSTATUS_LS = "toDoListStatus",
-CLICKEDLISTBTN_CN = "clickedListBtn";
+CLICKEDLISTBTN_CN = "clicked-list-btn";
 
 let listStatus = "";
 
@@ -121,32 +123,28 @@ function paintToDoDone(text) {
 
 function handleToDoSubmit(event) {
     const currentListStatus = localStorage.getItem(TODOLISTSTATUS_LS);
+    event.preventDefault();
     if(currentListStatus === "toDo" || currentListStatus === "done") {
-        event.preventDefault();
         const currentValue = toDoInput.value;
         paintToDo(currentValue);
-        toDoInput.value = "";
-    } else {
-        event.preventDefault();
-        toDoInput.value = "Please select.";
     }
+    toDoInput.value = "";
 }
 
 function handleToDoFormClick() {
     const currentListStatus = localStorage.getItem(TODOLISTSTATUS_LS);
     if(currentListStatus === "toDo") {
-        toDoList.classList.remove(NONE);
         toDoList.classList.remove(CLOSELIST_CN);
         toDoList.classList.add(OPENLIST_CN);
     }
     if(currentListStatus === "done") {
-        toDoListDone.classList.remove(NONE);
         toDoListDone.classList.remove(CLOSELIST_CN);
         toDoListDone.classList.add(OPENLIST_CN);
     }
     toDoBar.classList.remove(DISAPPEARTODOBAR_CN);
     toDoBar.classList.add(APPEARTODOBAR_CN);
-    toDoListsBtns.classList.add(NONE);
+    toDoListsBtns.classList.remove(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.add(DISAPPEARTODOLISTSBTNS);
 }
 
 function handleListStatus() {
@@ -157,6 +155,11 @@ function handleListStatus() {
     } else if(currentListStatus === "done") {
         toDoListToDoBtn.classList.remove(CLICKEDLISTBTN_CN);
         toDoListDoneBtn.classList.add(CLICKEDLISTBTN_CN);
+    }
+    if(currentListStatus === "toDo" || currentListStatus === "done") {
+        toDoInput.placeholder = "Write a to do";
+    } else {
+        toDoInput.placeholder = "Please select";
     }
 }
 
@@ -175,18 +178,17 @@ function handleListDoneClick() {
 function handleToDoBarClick() {
     const currentListStatus = localStorage.getItem(TODOLISTSTATUS_LS);
     if(currentListStatus === "toDo") {
-        toDoList.classList.add(NONE);
         toDoList.classList.add(CLOSELIST_CN);
         toDoList.classList.remove(OPENLIST_CN);
     }
     if(currentListStatus === "done") {
-        toDoListDone.classList.add(NONE);
         toDoListDone.classList.add(CLOSELIST_CN);
         toDoListDone.classList.remove(OPENLIST_CN);
     }
     toDoBar.classList.add(DISAPPEARTODOBAR_CN);
     toDoBar.classList.remove(APPEARTODOBAR_CN);
-    toDoListsBtns.classList.remove(NONE);
+    toDoListsBtns.classList.add(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.remove(DISAPPEARTODOLISTSBTNS);
     handleListStatus();
     toDoListToDoBtn.addEventListener("click", handleListToDoClick);
     toDoListDoneBtn.addEventListener("click", handleListDoneClick);
@@ -222,6 +224,7 @@ function loadToDos() {
 function init() {
     loadToDos();
     askListStatus();
+    handleListStatus();
     toDoForm.addEventListener("submit", handleToDoSubmit);
     toDoForm.addEventListener("click", handleToDoFormClick);
     toDoBar.addEventListener("click", handleToDoBarClick);
