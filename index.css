@@ -308,6 +308,7 @@ body {
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0);
   color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
 }
 .toDoLists-btns button:first-child {
   border-right: 0.5px solid rgba(255, 255, 255, 0.2);
@@ -357,5 +358,27 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+.shine1 {
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  animation: shineTextAnimation 1s ease-out;
+}
+.shine2 {
+  border-top-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  animation: shineTextAnimation 1s ease-out;
+}
+@keyframes shineTextAnimation {
+  0% {
+    color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  60% {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0);
   }
 }
