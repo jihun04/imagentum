@@ -5,6 +5,8 @@ const form = document.querySelector(".js-form"),
 const USER_LS = "currentUser",
   SHOWING_CN = "showing",
   NONE = "none";
+  
+let SHINE_CN = "";
 
 function saveName(text){
   localStorage.setItem(USER_LS, text); 
@@ -23,7 +25,18 @@ function askForName() {
     greeting.classList.remove(SHOWING_CN);
 }
 
+function genRandom() {
+  return Math.ceil(Math.random() * 2);
+}
+
 function paintGreeting(text) {
+  const random = genRandom();
+  if(random === 1) {
+    SHINE_CN = "shine1";
+  } else {
+    SHINE_CN = "shine2";
+  }
+  greeting.classList.add(SHINE_CN);
   greeting.classList.add(SHOWING_CN);
   form.classList.remove(SHOWING_CN);
   const date = new Date;
@@ -49,6 +62,7 @@ function loadName() {
 }
 
 function handleClick(){
+  greeting.classList.remove(SHINE_CN);
   removeName();
 }
 

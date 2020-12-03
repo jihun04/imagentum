@@ -199,7 +199,8 @@ function askListStatus() {
     toDoList.classList.remove(OPENLIST_CN);
     toDoBar.classList.add(DISAPPEARTODOBAR_CN);
     toDoBar.classList.remove(APPEARTODOBAR_CN);
-    toDoListsBtns.classList.remove(NONE);
+    toDoListsBtns.classList.add(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.remove(DISAPPEARTODOLISTSBTNS);
     toDoListToDoBtn.addEventListener("click", handleListToDoClick);
     toDoListDoneBtn.addEventListener("click", handleListDoneClick);
 }
