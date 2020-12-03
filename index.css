@@ -42,7 +42,7 @@ body {
 .timestamp {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 50px -0.8em rgba(255, 255, 255, 0.4);
   font-size: 28px;
 }
