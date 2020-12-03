@@ -39,6 +39,41 @@ body {
 .column_column:last-child {
   align-items: flex-end;
 }
+.timestamp {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 50px -0.8em rgba(255, 255, 255, 0.4);
+  font-size: 28px;
+}
+.appear-timestamp {
+  animation: appearTimestamp 0.5s ease-in-out forwards;
+}
+.disappear-timestamp {
+  animation: disappearTimestamp 0.3s ease-in-out forwards;
+}
+@keyframes appearTimestamp {
+  from {
+    visibility: hidden;
+    transform: translateY(-10px) rotateX(-90deg);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+@keyframes disappearTimestamp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.8);
+    opacity: 0;
+  }
+}
 .js-clock {
   display: flex;
   align-items: center;
@@ -49,6 +84,7 @@ body {
   box-shadow: 0 70px 300px 1em rgba(0, 0, 0, 0.15);
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
+  z-index: 2;
 }
 .js-title {
   margin: 0;
