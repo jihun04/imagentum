@@ -195,27 +195,26 @@ body {
   margin: 0;
 }
 .toDoList--close {
-  animation: closeList 0.3s ease-in-out forwards;
+  animation: closeList 0.15s ease-in-out forwards;
 }
 .toDoList--open {
-  margin: 10px 0;
-  animation: openList 0.3s ease-in-out;
+  animation: openList 0.3s ease-in-out forwards;
 }
 @keyframes closeList {
   0% {
     opacity: 1;
-    transform: translateY(0px);
+    transform: translateY(0);
   }
   70% {
-    transform: translateY(-20px);
     visibility: hidden;
     opacity: 0;
+    transform: translateY(-20px);
   }
   100% {
-    transform: translateY(-20px);
     visibility: hidden;
     opacity: 0;
     height: 0px;
+    transform: translateY(-20px);
   }
 }
 @keyframes openList {
@@ -224,6 +223,7 @@ body {
     visibility: hidden;
     opacity: 0;
     height: 0px;
+    margin: 0px;
   }
   70% {
     transform: translateY(-20px);
@@ -232,6 +232,7 @@ body {
   }
   100% {
     opacity: 1;
+    margin: 10px 0px;
     transform: translateY(0px);
   }
 }
@@ -261,16 +262,18 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 0;
+  opacity: 0;
 }
 .appear-toDoLists-btns {
   animation: appearToDoListsBtns 0.3s ease-in-out forwards;
 }
 .disappear-toDoList-btns {
-  animation: disappearToDoListsBtns 0.3s ease-in-out forwards;
+  animation: disappearToDoListsBtns 0.15s ease-in-out forwards;
 }
 @keyframes appearToDoListsBtns {
   0% {
     visibility: hidden;
+    opacity: 0;
     border: none;
     margin-bottom: 0;
     transform: translateY(50px);
@@ -279,20 +282,23 @@ body {
     margin-bottom: 20px;
   }
   100% {
+    opacity: 1;
     border: 2px solid rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
     transform: translateY(0px);
   }
 }
 @keyframes disappearToDoListsBtns {
-  from {
+  0% {
     transform: translateY(0px);
+    opacity: 1;
   }
-  to {
+  100% {
     visibility: hidden;
     transform: translateY(-50px);
     opacity: 0;
-    height: 0;
+    border: none;
+    height: 0px;
   }
 }
 .toDoLists-btns * {
