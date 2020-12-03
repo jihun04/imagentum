@@ -192,11 +192,13 @@ body {
 .js-toDoList--done,
 .js-toDoList {
   padding: 0;
+  margin: 0;
 }
 .toDoList--close {
   animation: closeList 0.3s ease-in-out forwards;
 }
 .toDoList--open {
+  margin: 10px 0;
   animation: openList 0.3s ease-in-out;
 }
 @keyframes closeList {
@@ -258,20 +260,61 @@ body {
   border-radius: 10px;
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 0;
+}
+.appear-toDoLists-btns {
+  animation: appearToDoListsBtns 0.3s ease-in-out forwards;
+}
+.disappear-toDoList-btns {
+  animation: disappearToDoListsBtns 0.3s ease-in-out forwards;
+}
+@keyframes appearToDoListsBtns {
+  0% {
+    visibility: hidden;
+    border: none;
+    margin-bottom: 0;
+    transform: translateY(50px);
+  }
+  80% {
+    margin-bottom: 20px;
+  }
+  100% {
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transform: translateY(0px);
+  }
+}
+@keyframes disappearToDoListsBtns {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    visibility: hidden;
+    transform: translateY(-50px);
+    opacity: 0;
+    height: 0;
+  }
 }
 .toDoLists-btns * {
-  padding: 20px;
+  padding: 10px 30px;
   border: none;
+  outline: none;
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0);
   color: rgba(255, 255, 255, 0.9);
 }
 .toDoLists-btns button:first-child {
   border-right: 0.5px solid rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
 }
 .toDoLists-btns button:last-child {
   border-left: 0.5px solid rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
+.toDoLists-btns .clicked-list-btn {
+  background-color: rgba(255, 255, 255, 0.4);
 }
 .toDo-text {
   width: 230px;
