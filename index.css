@@ -204,15 +204,12 @@ body {
 @keyframes closeList {
   0% {
     opacity: 1;
-    transform: translateY(0px);
   }
   70% {
-    transform: translateY(-20px);
     visibility: hidden;
     opacity: 0;
   }
   100% {
-    transform: translateY(-20px);
     visibility: hidden;
     opacity: 0;
     height: 0px;
