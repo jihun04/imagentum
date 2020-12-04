@@ -137,7 +137,7 @@ body {
 }
 .timestamp {
   position: absolute;
-  top: -30px;
+  top: -40px;
   text-align: center;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
