@@ -5,9 +5,31 @@ timestampSpan = timestamp.querySelector("span");
 
 const TIMESTAMP_LS = "timestamp",
 APPEARTIMESTAMP_CN = "appear-timestamp",
-DISAPPEARTIMESTAMP_CN = "disappear-timestamp";
+DISAPPEARTIMESTAMP_CN = "disappear-timestamp",
+RGB_LS = "rgb",
+ALPHA_LS = "alpha",
+CLOCKCOLOR_LS = "clock-color";
+
+function genRGB() {
+    const rgb = Math.ceil(Math.random() * 255);
+    return rgb;
+}
+
+function genA() {
+    const alpha = Math.random() * (0.9 - 0.6) + 0.6;
+    return alpha;
+}
+
+function changeClockColor() {
+    const R = genRGB();
+    const G = genRGB();
+    const B = genRGB();
+    const alpha = genA();
+    clockContainer.style.color = `rgba(${R}, ${G}, ${B}, ${alpha})`;
+}
 
 function getTime() {
+    const clockColorLs = localStorage.getItem(CLOCKCOLOR_LS);
     const dates = new Date();
     const year = dates.getFullYear();
     let month = dates.getMonth();
@@ -75,6 +97,9 @@ function getTime() {
     }
     clockTitle.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ?`0${seconds}` : seconds}`;
     timestampSpan.innerText = `${month} ${date < 10 ? `0${date}` : date} ${day}, ${year}`;
+    if(clockColorLs === "on") {
+        changeClockColor();
+    }
 }
 
 function appearTimestamp() {
@@ -100,10 +125,14 @@ function loadTimestamp() {
 
 function handleClockClick() {
     const currentTimestamp = localStorage.getItem(TIMESTAMP_LS);
-    if(currentTimestamp === "on") {
+    const clockColorLs = localStorage.getItem(CLOCKCOLOR_LS);
+    if(currentTimestamp === "on" && clockColorLs === "off") {
         localStorage.setItem(TIMESTAMP_LS, "off");
-    } else if(currentTimestamp === "off") {
+    } else if(currentTimestamp === "off" && clockColorLs === "off") {
         localStorage.setItem(TIMESTAMP_LS, "on");
+    }
+    if(clockColorLs === "on") {
+        localStorage.setItem(CLOCKCOLOR_LS, "off");
     }
     loadTimestamp();
 }
