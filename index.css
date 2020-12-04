@@ -63,10 +63,10 @@ body {
   background-color: var(--black);
 }
 .icon-box:hover + .icon-box-bar {
-  animation: iconBoxBarAnimation 0.2s ease-in-out forwards;
+  animation: iconBoxBarAnimation 0.1s ease-in-out forwards;
 }
 .icon-box-hover:hover ~ .icon-box-bar {
-  animation: iconBoxBarAnimation 0.2s ease-in-out forwards;
+  animation: iconBoxBarAnimation 0.1s ease-in-out forwards;
 }
 .icon-box {
   background-color: var(--black);
@@ -82,13 +82,13 @@ body {
 }
 .icon-box:hover {
   z-index: 3;
-  animation: iconBoxAnimation 0.2s ease-in-out forwards;
-  animation-delay: 0.2s;
+  animation: iconBoxAnimation 0.1s ease-in-out forwards;
+  animation-delay: 0.1s;
 }
 .icon-box-hover:hover ~ .icon-box {
   z-index: 3;
-  animation: iconBoxAnimation 0.2s ease-in-out forwards;
-  animation-delay: 0.2s;
+  animation: iconBoxAnimation 0.1s ease-in-out forwards;
+  animation-delay: 0.1s;
 }
 @keyframes iconBoxBarAnimation {
   0% {
