@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <link rel="stylesheet" href="index-phone.css"/>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monmentun</title>
+    </head>
+    <body>
+        <div class="column">
+            <div class="column__column">
+                <span class="weather-text">
+                    <i class="js-weather-icon"></i>
+                    <span class="js-weather"></span>
+                </span>
+            </div>
+            <div class="column__column">
+                <div class="icon-box-hover"></div>
+                <div class="icon-box">
+                    <div class="icon-box__icon">
+                        <a href="index.html">
+                            <i class="fas fa-home"></i>
+                        </a>
+                    </div>
+                    <div class="icon-box__icon">
+                        <a class="current-page" href="https://www.google.co.kr">
+                            <i class="fas fa-mobile-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="icon-box-bar"></div>
+            </div>
+            <div class="column__column">
+                <span class="js-img-name"></span>
+            </div>
+        </div>
+        <div class="column">
+            <div class="timestamp">
+                <span></span>
+            </div>
+            <div class="js-clock">
+                <h1 class="js-title"></h1>
+            </div>
+            <form class="js-form none">
+                <input required type="text" placeholder="What is your name"/>
+            </form>
+            <h4 class="js-greetings none"></h4>
+        </div>
+        <div class="column">
+            <div class="toDo-box">
+                <form class="ja-toDoFrom">
+                    <input required type="text" placeholder="Write a to do"/>
+                </form>
+                <div class="toDo-bar-box">
+                    <div class="toDo-bar appear-toDo-bar">
+                        <span>Close</span>
+                    </div>
+                </div>
+                <ul class="js-toDoList toDoList--close">
+                </ul>
+                <ul class="js-toDoList--done toDoList--close">
+                </ul>
+                <div class="toDoLists-btns appear-toDoLists-btns">
+                    <button class="toDoLists-btns__toDo-btn">To do</button>
+                    <button class="toDoLists-btns__done-btn">Done</button>
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+        <script src="clock-phone.js"></script>
+        <script src="greeting-phone.js"></script>
+        <script src="todo-phone.js"></script>
+        <script src="bg-phone.js"></script>
+        <script src="weather-phone.js"></script>
+    </body>
+</html>
