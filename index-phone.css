@@ -136,6 +136,8 @@ body {
   color: var(--white);
 }
 .timestamp {
+  position: absolute;
+  top: -30px;
   text-align: center;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
@@ -173,6 +175,7 @@ body {
 }
 .js-clock {
   display: flex;
+  justify-content: center;
   align-items: center;
   font-size: 30px;
   margin-bottom: 30px;
@@ -182,6 +185,7 @@ body {
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
   z-index: 2;
+  position: relative;
 }
 .js-title {
   margin: 0;
