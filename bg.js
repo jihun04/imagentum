@@ -38,56 +38,58 @@ function handleUnsplashClick(event) {
     }
 }
 
+// https://jihun04.github.io/momentun/images
+
 function paintImageName(image) {
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/1.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/1.jpg") {
         imageName.innerText = `joel-holland`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/2.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/2.jpg") {
         imageName.innerText = `ken-cheung`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/3.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/3.jpg") {
         imageName.innerText = `marcelo-quinan`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/4.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/4.jpg") {
         imageName.innerText = `mohammad-alizade`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/5.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/5.jpg") {
         imageName.innerText = `robert-koorenny`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/6.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/6.jpg") {
         imageName.innerText = `rodion-kutsaev`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/7.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/7.jpg") {
         imageName.innerText = `sergey-pesterev`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/8.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/8.jpg") {
         imageName.innerText = `silas-baisch`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/9.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/9.jpg") {
         imageName.innerText = `alberto-restifo`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/10.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/10.jpg") {
         imageName.innerText = `alberto-restifo`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/11.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/11.jpg") {
         imageName.innerText = `ales-krivec`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/12.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/12.jpg") {
         imageName.innerText = `claudio-testa`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/13.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/13.jpg") {
         imageName.innerText = `david-marcu`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/14.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/14.jpg") {
         imageName.innerText = `jeremy-bishop`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/15.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/15.jpg") {
         imageName.innerText = `marcelo-quinan`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/16.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/16.jpg") {
         imageName.innerText = `matteo-minelli`;
     }
-    if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/17.jpg") {
+    if(image.src == "https://jihun04.github.io/momentun/images/17.jpg") {
         imageName.innerText = `simon-berger`;
     }
     unsplash.addEventListener("click", handleUnsplashClick);
