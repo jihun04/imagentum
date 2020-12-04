@@ -38,6 +38,8 @@ function handleUnsplashClick(event) {
     }
 }
 
+// https://jihun04.github.io/momentun/images
+
 function paintImageName(image) {
     if(image.src == "file:///C:/Users/yujih/Desktop/momentun/images/1.jpg") {
         imageName.innerText = `joel-holland`;
