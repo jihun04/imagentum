@@ -126,9 +126,9 @@ function loadTimestamp() {
 function handleClockClick() {
     const currentTimestamp = localStorage.getItem(TIMESTAMP_LS);
     const clockColorLs = localStorage.getItem(CLOCKCOLOR_LS);
-    if(currentTimestamp === "on" && clockColorLs === "off") {
+    if(currentTimestamp === "on" && clockColorLs !== "on") {
         localStorage.setItem(TIMESTAMP_LS, "off");
-    } else if(currentTimestamp === "off" && clockColorLs === "off") {
+    } else if(currentTimestamp === "off" && clockColorLs !== "on") {
         localStorage.setItem(TIMESTAMP_LS, "on");
     }
     if(clockColorLs === "on") {
