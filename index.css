@@ -5,7 +5,6 @@
   --white: rgba(255, 255, 255, 0.9);
   --radius: 10px;
 }
-
 *::selection {
   color: rgba(255, 255, 255, 0.9);
   background-color: rgba(0, 0, 0, 0.4);
@@ -13,7 +12,6 @@
 body {
   font-family: "Hind", "Open Sans", sans-serif;
   height: 100vh;
-  min-width: 400px;
   box-sizing: border-box;
   font-size: 30px;
   color: white;
@@ -137,6 +135,7 @@ body {
   color: var(--white);
 }
 .timestamp {
+  text-align: center;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
   color: rgba(0, 0, 0, 0.6);
@@ -478,7 +477,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -1;
   animation: fadeIn 0.5s linear;
 }
