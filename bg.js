@@ -32,31 +32,31 @@ function paintImage(imgNumber) {
     if(image.src == "https://jihun04.github.io/momentun/images/8.jpg") {
         imageName.innerText = `silas-baisch-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/9.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/9.jpg") {
         imageName.innerText = `alberto-restifo-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/10.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/10.jpg") {
         imageName.innerText = `alberto-restifo-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/11.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/11.jpg") {
         imageName.innerText = `ales-krivec-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/12.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/12.jpg") {
         imageName.innerText = `claudio-testa-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/13.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/13.jpg") {
         imageName.innerText = `david-marcu-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/14.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/14.jpg") {
         imageName.innerText = `jeremy-bishop-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/15.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/15.jpg") {
         imageName.innerText = `marcelo-quinan-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/16.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/16.jpg") {
         imageName.innerText = `matteo-minelli-unsplash`;
     }
-    if(image.src === "file:///C:/Users/yujih/Desktop/momentun/images/17.jpg") {
+    if(image.src === "https://jihun04.github.io/momentun/images/17.jpg") {
         imageName.innerText = `simon-berger-unsplash`;
     }
 }
