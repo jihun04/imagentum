@@ -241,10 +241,13 @@ body {
 .weather-text .fa-smile {
   color: rgba(255, 255, 0, 0.6);
 }
-.js-img-name {
+.js-img-name-text {
   margin-left: 5px;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.4);
+}
+.cursor--pointer {
+  cursor: pointer;
 }
 .toDo-box {
   width: 190px;
