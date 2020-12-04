@@ -124,9 +124,15 @@ body {
   align-items: flex-end;
 }
 .icon-box__icon a {
-  color: var(--white);
+  color: rgba(255, 255, 255, 0.6);
 }
 .icon-box__icon a:visited {
+  color: rgba(255, 255, 255, 0.6);
+}
+.icon-box__icon .current-page {
+  color: var(--white);
+}
+.icon-box__icon .current-page:visited {
   color: var(--white);
 }
 .timestamp {
