@@ -133,6 +133,7 @@ function handleClockClick() {
     }
     if(clockColorLs === "on") {
         localStorage.setItem(CLOCKCOLOR_LS, "off");
+        clockContainer.style.color = "white";
     }
     loadTimestamp();
 }
