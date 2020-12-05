@@ -117,6 +117,7 @@ body {
   height: 25%;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 .icon-box__icon:last-child {
   align-items: flex-end;
