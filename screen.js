@@ -4,18 +4,34 @@ headLink = document.querySelector("link");
 
 const INDEXCSS_CN = "index.css",
 MOBILECSS_CN = "index-mobile.css",
-CURRENTPAGE_CN = "current-page";
+CURRENTPAGE_CN = "current-page",
+SCREEN_LS = "screen";
+
+function loadScreenCss() {
+    const currentScreen = localStorage.getItem(SCREEN_LS);
+    if(currentScreen === "big") {
+        btnIndex.classList.add(CURRENTPAGE_CN);
+        btnMobile.classList.remove(CURRENTPAGE_CN);
+        headLink.href = INDEXCSS_CN;
+    } else if(currentScreen === "small") {
+        btnMobile.classList.add(CURRENTPAGE_CN);
+        btnIndex.classList.remove(CURRENTPAGE_CN);
+        headLink.href = MOBILECSS_CN;
+    }
+}
 
 function handleIndexClick() {
     btnIndex.classList.add(CURRENTPAGE_CN);
     btnMobile.classList.remove(CURRENTPAGE_CN);
     headLink.href = INDEXCSS_CN;
+    localStorage.setItem(SCREEN_LS, "big");
 }
 
 function handleMobileClick() {
     btnMobile.classList.add(CURRENTPAGE_CN);
     btnIndex.classList.remove(CURRENTPAGE_CN);
     headLink.href = MOBILECSS_CN;
+    localStorage.setItem(SCREEN_LS, "small");
 }
 
 function listenEvent() {
@@ -24,6 +40,7 @@ function listenEvent() {
 }
 
 function init() {
+    loadScreenCss();
     listenEvent();
 }
 
