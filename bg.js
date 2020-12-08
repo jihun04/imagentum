@@ -7,7 +7,7 @@ CURSORPOINTER_CN = "cursor--pointer";
 
 // https://jihun04.github.io/momentun/images
 
-const FILE_NAME = https://jihun04.github.io/momentun/images;
+const FILE_NAME = `https://jihun04.github.io/momentun/images`;
 
 function clockRandomColor() {
     const R = genRGB();
