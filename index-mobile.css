@@ -398,6 +398,10 @@ main {
   align-items: flex-start;
   margin-bottom: 8px;
 }
+.toDoList--close li {
+  height: 0px;
+  margin-bottom: 0px;
+}
 .js-toDoList--done li button,
 .js-toDoList li button {
   margin: 5px 0;
@@ -411,6 +415,12 @@ main {
   color: rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
+}
+.toDoList--close li button {
+  height: 0px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
 }
 .toDoLists-btns {
   border: 2px solid rgba(0, 0, 0, 0.2);
