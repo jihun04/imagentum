@@ -10,6 +10,7 @@ SCREEN_LS = "screen";
 function loadScreenCss() {
     const currentScreen = localStorage.getItem(SCREEN_LS);
     const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
     if(currentScreen === "big") {
         btnIndex.classList.add(CURRENTPAGE_CN);
         btnMobile.classList.remove(CURRENTPAGE_CN);
@@ -19,7 +20,7 @@ function loadScreenCss() {
         btnIndex.classList.remove(CURRENTPAGE_CN);
         headLink.href = MOBILECSS_CN;
     }
-    if(screenWidth <= 680 && currentScreen === "big") {
+    if(screenWidth <= 680 || screenHeight <= 650 && currentScreen === "big") {
         btnMobile.classList.add(CURRENTPAGE_CN);
         btnIndex.classList.remove(CURRENTPAGE_CN);
         headLink.href = MOBILECSS_CN;
