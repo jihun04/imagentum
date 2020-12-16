@@ -20,7 +20,7 @@ function loadScreenCss() {
         btnIndex.classList.remove(CURRENTPAGE_CN);
         headLink.href = MOBILECSS_CN;
     }
-    if(screenWidth <= 680 || screenHeight <= 650 && currentScreen === "big") {
+    if(screenWidth <= 680 || screenHeight <= 650 && currentScreen !== "small") {
         btnMobile.classList.add(CURRENTPAGE_CN);
         btnIndex.classList.remove(CURRENTPAGE_CN);
         headLink.href = MOBILECSS_CN;
