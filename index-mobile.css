@@ -477,7 +477,8 @@ main {
   }
 }
 .toDoLists-btns * {
-  padding: 8px 20px;
+  width: 85px;
+  padding: 8px 0;
   border: none;
   outline: none;
   font-size: 20px;
