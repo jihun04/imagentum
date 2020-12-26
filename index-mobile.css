@@ -596,9 +596,13 @@ main {
   }
 }
 footer {
-  background-color: black;
+  background-color: var(--black);
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
 }
 .image-column {
+  background-color: black;
   width: 45%;
-  height: 600px;
+  height: 900px;
 }
