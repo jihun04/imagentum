@@ -1,13 +1,18 @@
 const imageColumn1 = document.querySelector(".image-column1"),
 imageColumn2 = document.querySelector(".image-column2"),
-bgImage = document.querySelector(".bgImage");
+bgImage = document.querySelector(".bgImage"),
+randomBtn = document.querySelector(".random-btn"),
+randomBtnCheckBox = randomBtn.querySelector("div"),
+imageUrlForm = document.querySelector(".image-url-form"),
+imageUrlInput = imageUrlForm.querySelector("input");
 
 const IMAGEURL_LS = "image-url",
 IMAGEBOX_CN = "image-box",
 IMAGE_CN = "image-box__image",
 IMAGEBTNS_CN = "image-box__btns",
 CHECKBOX_CN = "check-box",
-CHECKED_CN = "checked";
+CHECKED_CN = "checked",
+RANDOMON_CN = "random--on";
 
 let imageUrl = [],
 maxNumber = "",
@@ -107,9 +112,9 @@ function paintImage(src, div) {
     selCheckBox.classList.add(CHECKED_CN);
   }
   if(Column1ChildCount <= maxNumber) {
-    imageColumn1.appendChild(imageBox);
+    imageColumn1.prepend(imageBox);
   } else {
-    imageColumn2.appendChild(imageBox);
+    imageColumn2.prepend(imageBox);
   }
 }
 
@@ -132,10 +137,39 @@ function loadImage() {
   }
 }
 
+function loadRandomImage() {
+  const randomImage = localStorage.getItem(RANDOMIMAGE_LS);
+  if(randomImage === "off") {
+    randomBtnCheckBox.classList.remove(RANDOMON_CN);
+  } else {
+    randomBtnCheckBox.classList.add(RANDOMON_CN);
+  }
+}
+
+function handleRBtnClick() {
+  const randomImage = localStorage.getItem(RANDOMIMAGE_LS);
+  if(randomImage !== "on") {
+    localStorage.setItem(RANDOMIMAGE_LS, "on")
+    randomBtnCheckBox.classList.add(RANDOMON_CN);
+  } else {
+    localStorage.setItem(RANDOMIMAGE_LS, "off")
+    randomBtnCheckBox.classList.remove(RANDOMON_CN);
+  }
+}
+
+function addImage(event) {
+  event.preventDefault()
+  const imageUrlInputValue = imageUrlInput.value;
+  imageUrlInput.value = "";
+  paintImage(imageUrlInputValue, "on");
+}
+
 function init() {
   getMaxNumber();
   loadImage();
-  
+  loadRandomImage();
+  randomBtn.addEventListener("click", handleRBtnClick);
+  imageUrlForm.addEventListener("submit", addImage);
 }
 
 init();
