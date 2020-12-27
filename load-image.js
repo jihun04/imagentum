@@ -60,6 +60,7 @@ function handleSelClick(event) {
     const targetImage = target.parentNode.previousSibling;
     const targetImageSrc = targetImage.src;
     bgImage.src = targetImageSrc;
+    localStorage.setItem(CURRENTIMAGESRC_LS, targetImageSrc);
   } else {
     if(target.localName === "div") {
       target.classList.add(CHECKED_CN);
@@ -69,6 +70,7 @@ function handleSelClick(event) {
     const targetImage = target.parentNode.parentNode.previousSibling;
     const targetImageSrc = targetImage.src;
     bgImage.src = targetImageSrc;
+    localStorage.setItem(CURRENTIMAGESRC_LS, targetImageSrc);
   }
 }
 
