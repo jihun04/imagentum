@@ -15,8 +15,12 @@ number = 1;
 
 function getMaxNumber() {
   const imageUrls = localStorage.getItem(IMAGEURL_LS);
-  const parsed = JSON.parse(imageUrls);
-  maxNumber = Math.ceil((IMG_NUMBER + parsed.length) / 2)
+  if(imageUrls === null) {
+    maxNumber = Math.ceil(IMG_NUMBER / 2);
+  } else {
+    const parsed = JSON.parse(imageUrls);
+    maxNumber = Math.ceil((IMG_NUMBER + parsed.length) / 2);
+  }
 }
 
 function handleDelClick(event) {
@@ -83,7 +87,6 @@ function paintImage(src, div) {
     imageDelBtn.addEventListener("click", handleDelClick);
     delSpan.innerText = "Delete";
   }
-  imageColumn1.appendChild(imageBox);
   imageBox.appendChild(image);
   imageBox.appendChild(imageBtns);
   imageBtns.prepend(imageSelBtn);
@@ -121,7 +124,7 @@ function countNumber() {
 function loadImage() {
   const imageUrls = localStorage.getItem(IMAGEURL_LS);
   countNumber();
-  if(imageUrls !== NONE) {
+  if(imageUrls !== null) {
     const parsed = JSON.parse(imageUrls);
     parsed.forEach(function(url) {
       paintImage(url, "on");

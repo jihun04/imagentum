@@ -4,7 +4,8 @@ unsplash = document.querySelector(".unsplash");
 
 const IMG_NUMBER = 61,
 CURSORPOINTER_CN = "cursor--pointer",
-CURRENTIMAGESRC_LS = "current-image-src";
+CURRENTIMAGESRC_LS = "current-image-src",
+RANDOMIMAGE_LS = "random-image";
 
 let RANDOMCOLOR = "";
 
@@ -232,11 +233,17 @@ function paintImageName(image) {
 }
 
 function paintImage(imgNumber) {
+    const randomImage = localStorage.getItem(RANDOMIMAGE_LS);
     const image = new Image();
-    image.src = `images/${imgNumber + 1}.jpg`;
-    localStorage.setItem(CURRENTIMAGESRC_LS, image.src);
     image.classList.add("bgImage");
     body.prepend(image);
+    if(randomImage !== "off") {
+        image.src = `images/${imgNumber + 1}.jpg`;
+        localStorage.setItem(CURRENTIMAGESRC_LS, image.src);
+    } else {
+        const currentImageSrc = localStorage.getItem(CURRENTIMAGESRC_LS);
+        image.src = currentImageSrc;
+    }
     paintImageName(image);
 }
 
