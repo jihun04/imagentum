@@ -23,8 +23,8 @@ function getMaxNumber() {
   if(imageUrls === null) {
     maxNumber = Math.ceil(IMG_NUMBER / 2);
   } else {
-    const parsed = JSON.parse(imageUrls);
-    maxNumber = Math.ceil((IMG_NUMBER + parsed.length) / 2);
+    imageUrl = JSON.parse(imageUrls);
+    maxNumber = Math.ceil((IMG_NUMBER + imageUrl.length) / 2);
   }
 }
 
@@ -60,6 +60,7 @@ function handleSelClick(event) {
     const targetImage = target.parentNode.previousSibling;
     const targetImageSrc = targetImage.src;
     bgImage.src = targetImageSrc;
+    bgImageZIndexM2.src = targetImageSrc;
     localStorage.setItem(CURRENTIMAGESRC_LS, targetImageSrc);
   } else {
     if(target.localName === "div") {
@@ -70,6 +71,7 @@ function handleSelClick(event) {
     const targetImage = target.parentNode.parentNode.previousSibling;
     const targetImageSrc = targetImage.src;
     bgImage.src = targetImageSrc;
+    bgImageZIndexM2.src = targetImageSrc;
     localStorage.setItem(CURRENTIMAGESRC_LS, targetImageSrc);
   }
 }
@@ -120,20 +122,18 @@ function paintImage(src, div) {
   }
 }
 
-function countNumber() {
+function loadOffImage() {
   if(IMG_NUMBER >= number) {
     paintImage(number, "off");
     number += 1;
-    countNumber();
+    loadOffImage();
   }
 }
 
 function loadImage() {
-  const imageUrls = localStorage.getItem(IMAGEURL_LS);
-  countNumber();
-  if(imageUrls !== null) {
-    const parsed = JSON.parse(imageUrls);
-    parsed.forEach(function(url) {
+  loadOffImage();
+  if(imageUrl !== []) {
+    imageUrl.forEach(function(url) {
       paintImage(url, "on");
     }) 
   }
@@ -159,11 +159,17 @@ function handleRBtnClick() {
   }
 }
 
+function saveImageUrl() {
+  localStorage.setItem(IMAGEURL_LS, JSON.stringify(imageUrl));
+}
+
 function addImage(event) {
   event.preventDefault()
   const imageUrlInputValue = imageUrlInput.value;
   imageUrlInput.value = "";
+  imageUrl.push(imageUrlInputValue);
   paintImage(imageUrlInputValue, "on");
+  saveImageUrl();
 }
 
 function init() {

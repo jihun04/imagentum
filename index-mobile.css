@@ -569,7 +569,7 @@ main {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  font-size: 18px;
+  font-size: 25px;
   z-index: 0;
 }
 .spin-y-180 {
@@ -601,6 +601,10 @@ main {
   z-index: 2;
   cursor: pointer;
 }
+.bgImage--z-index--2 {
+  position: fixed;
+  z-index: -2;
+}
 footer {
   background-color: var(--black);
   display: flex;
@@ -609,7 +613,7 @@ footer {
 }
 footer > div {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 footer > div:first-child {
   margin-bottom: 20px;
@@ -681,8 +685,7 @@ footer > div:first-child {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.7);
 }
-.image-column1,
-.image-column2 {
+.image-columns > * {
   display: flex;
   flex-direction: column;
   width: 45vw;
@@ -702,7 +705,7 @@ footer > div:first-child {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--white);
   font-size: 20px;
   padding: 0 10px;
 }
