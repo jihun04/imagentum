@@ -3,7 +3,8 @@ imageName = document.querySelector(".js-img-name"),
 unsplash = document.querySelector(".unsplash");
 
 const IMG_NUMBER = 61,
-CURSORPOINTER_CN = "cursor--pointer";
+CURSORPOINTER_CN = "cursor--pointer",
+CURRENTIMAGESRC_LS = "current-image-src";
 
 let RANDOMCOLOR = "";
 
@@ -233,6 +234,7 @@ function paintImageName(image) {
 function paintImage(imgNumber) {
     const image = new Image();
     image.src = `images/${imgNumber + 1}.jpg`;
+    localStorage.setItem(CURRENTIMAGESRC_LS, image.src);
     image.classList.add("bgImage");
     body.prepend(image);
     paintImageName(image);

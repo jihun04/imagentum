@@ -11,8 +11,7 @@ function pageUp() {
 }
 
 function pageDown() {
-  const outerHeight = window.outerHeight;
-  document.documentElement.scrollTop = outerHeight;
+  document.documentElement.scrollTop = document.documentElement.scrollHeight;
 }
 
 function handleScroll() {
