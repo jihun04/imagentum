@@ -1,5 +1,6 @@
 const imageColumn1 = document.querySelector(".image-column1"),
-imageColumn2 = document.querySelector(".image-column2");
+imageColumn2 = document.querySelector(".image-column2"),
+bgImage = document.querySelector(".bgImage");
 
 const IMAGEURL_LS = "image-url",
 IMAGEBOX_CN = "image-box",
@@ -40,7 +41,26 @@ function handleDelClick(event) {
 }
 
 function handleSelClick(event) {
-
+  const selected = document.querySelector(".checked");
+  const target = event.target;
+  const targetChildCount = target.childElementCount;
+  selected.classList.remove(CHECKED_CN);
+  if(targetChildCount === 2) {
+    const firstChild = target.firstChild;
+    firstChild.classList.add(CHECKED_CN);
+    const targetImage = target.parentNode.previousSibling;
+    const targetImageSrc = targetImage.src;
+    bgImage.src = targetImageSrc;
+  } else {
+    if(target.localName === "div") {
+      target.classList.add(CHECKED_CN);
+    } else {
+      target.previousSibling.classList.add(CHECKED_CN);
+    }
+    const targetImage = target.parentNode.parentNode.previousSibling;
+    const targetImageSrc = targetImage.src;
+    bgImage.src = targetImageSrc;
+  }
 }
 
 function paintImage2(src, div) {
