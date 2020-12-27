@@ -63,8 +63,9 @@ function handleSelClick(event) {
   }
 }
 
-function paintImage2(src, div) {
+function paintImage(src, div) {
   const currentImageSrc = localStorage.getItem(CURRENTIMAGESRC_LS);
+  const Column1ChildCount = imageColumn1.childElementCount;
   const imageBox = document.createElement("div");
   const image = document.createElement("img");
   const imageBtns = document.createElement("div");
@@ -82,7 +83,7 @@ function paintImage2(src, div) {
     imageDelBtn.addEventListener("click", handleDelClick);
     delSpan.innerText = "Delete";
   }
-  imageColumn2.appendChild(imageBox);
+  imageColumn1.appendChild(imageBox);
   imageBox.appendChild(image);
   imageBox.appendChild(imageBtns);
   imageBtns.prepend(imageSelBtn);
@@ -92,7 +93,7 @@ function paintImage2(src, div) {
   image.classList.add(IMAGE_CN);
   imageBtns.classList.add(IMAGEBTNS_CN);
   selCheckBox.classList.add(CHECKBOX_CN);
-  selCheckBox.addEventListener("click", handleSelClick);
+  imageSelBtn.addEventListener("click", handleSelClick);
   selSpan.innerText = "Select";
   if(div === "off") {
     image.src = `images/${src}.jpg`;
@@ -102,57 +103,16 @@ function paintImage2(src, div) {
   if(currentImageSrc === image.src) {
     selCheckBox.classList.add(CHECKED_CN);
   }
-}
-
-function paintImage1(src, div) {
-  const currentImageSrc = localStorage.getItem(CURRENTIMAGESRC_LS);
-  const Column1ChildCount = imageColumn1.childElementCount;
   if(Column1ChildCount <= maxNumber) {
-    const imageBox = document.createElement("div");
-    const image = document.createElement("img");
-    const imageBtns = document.createElement("div");
-    const imageSelBtn = document.createElement("div");
-    const selCheckBox = document.createElement("div");
-    const selSpan = document.createElement("span");
-    if(div === "on") {
-      const imageDelBtn = document.createElement("div");
-      const delCheckBox = document.createElement("div");
-      const delSpan = document.createElement("span");
-      imageBtns.appendChild(imageDelBtn);
-      imageDelBtn.appendChild(delCheckBox);
-      imageDelBtn.appendChild(delSpan);
-      delCheckBox.classList.add(CHECKBOX_CN);
-      delCheckBox.addEventListener("click", handleDelClick);
-      delSpan.innerText = "Delete";
-    }
     imageColumn1.appendChild(imageBox);
-    imageBox.appendChild(image);
-    imageBox.appendChild(imageBtns);
-    imageBtns.prepend(imageSelBtn);
-    imageSelBtn.appendChild(selCheckBox);
-    imageSelBtn.appendChild(selSpan);
-    imageBox.classList.add(IMAGEBOX_CN);
-    image.classList.add(IMAGE_CN);
-    imageBtns.classList.add(IMAGEBTNS_CN);
-    selCheckBox.classList.add(CHECKBOX_CN);
-    selCheckBox.addEventListener("click", handleSelClick);
-    selSpan.innerText = "Select";
-    if(div === "off") {
-      image.src = `images/${src}.jpg`;
-    } else if(div === "on") {
-      image.src = src;
-    }
-    if(currentImageSrc === image.src) {
-      selCheckBox.classList.add(CHECKED_CN);
-    }
   } else {
-    paintImage2(src, div);
+    imageColumn2.appendChild(imageBox);
   }
 }
 
 function countNumber() {
   if(IMG_NUMBER >= number) {
-    paintImage1(number, "off");
+    paintImage(number, "off");
     number += 1;
     countNumber();
   }
@@ -164,7 +124,7 @@ function loadImage() {
   if(imageUrls !== NONE) {
     const parsed = JSON.parse(imageUrls);
     parsed.forEach(function(url) {
-      paintImage1(url, "on");
+      paintImage(url, "on");
     }) 
   }
 }
