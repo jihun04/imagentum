@@ -3,9 +3,13 @@ imageName = document.querySelector(".js-img-name"),
 unsplash = document.querySelector(".unsplash");
 
 const IMG_NUMBER = 61,
-CURSORPOINTER_CN = "cursor--pointer";
+CURSORPOINTER_CN = "cursor--pointer",
+CURRENTIMAGESRC_LS = "current-image-src",
+RANDOMIMAGE_LS = "random-image";
 
 // https://jihun04.github.io/momentun/images
+
+let RANDOMCOLOR = "";
 
 function clockRandomColor() {
     const R = genRGB();
@@ -30,6 +34,7 @@ function handleUnsplashClick(event) {
         const G = genRGB();
         const B = genRGB();
         clockContainer.style.color = `rgb(${R}, ${G}, ${B})`;
+        RANDOMCOLOR = `rgb(${R}, ${G}, ${B})`;
     }
     if(imageNameText.childElementCount === 4) {
         const A = genA();
@@ -228,10 +233,17 @@ function paintImageName(image) {
 }
 
 function paintImage(imgNumber) {
+    const randomImage = localStorage.getItem(RANDOMIMAGE_LS);
     const image = new Image();
-    image.src = `images/${imgNumber + 1}.jpg`;
     image.classList.add("bgImage");
     body.prepend(image);
+    if(randomImage !== "off") {
+        image.src = `images/${imgNumber + 1}.jpg`;
+        localStorage.setItem(CURRENTIMAGESRC_LS, image.src);
+    } else {
+        const currentImageSrc = localStorage.getItem(CURRENTIMAGESRC_LS);
+        image.src = currentImageSrc;
+    }
     paintImageName(image);
 }
 

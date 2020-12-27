@@ -92,7 +92,7 @@ function getTime() {
     if(day === 6) {
         day = "Sat";
     }
-    if(day === 7) {
+    if(day === 0) {
         day = "Sun";
     }
     clockTitle.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ?`0${seconds}` : seconds}`;
