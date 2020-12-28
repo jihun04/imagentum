@@ -76,7 +76,20 @@
     <div class="arrow-box">
       <i class="fas fa-chevron-down"></i>
     </div>
-    <img class="bgImage bgImage--z-index--2">
+    <img class="bgImage--z-index--2">
+    <div class="show-image-screen hidden">
+      <div class="show-image-screen__row-top">
+        <i class="far fa-bookmark show-image-screen__book-mark"></i>
+        <i class="fas fa-times show-image-screen__times"></i>
+      </div>
+      <div class="show-image-screen__row-center">
+        <img class="showed-image">
+        <div class="arrow-row">
+          <i class="fas fa-chevron-left show-image-screen__left"></i>
+          <i class="fas fa-chevron-right show-image-screen__right"></i>
+        </div>
+      </div>
+    </div>
     <footer>
       <div>
         <button class="random-btn">
@@ -87,7 +100,7 @@
         </button>
         <form class="image-url-form">
           <input required type="text" placeholder="Write a link" />
-          <i class="fas fa-plus"></i>
+          <i class="fas fa-plus times image-url-form__times"></i>
         </form>
       </div>
       <div class="image-columns">
