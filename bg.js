@@ -1,6 +1,7 @@
 const body = document.querySelector("body"),
 imageName = document.querySelector(".js-img-name"),
-unsplash = document.querySelector(".unsplash");
+unsplash = document.querySelector(".unsplash"),
+bgImageZIndexM2 = document.querySelector(".bgImage--z-index--2");
 
 const IMG_NUMBER = 61,
 CURSORPOINTER_CN = "cursor--pointer",
@@ -238,11 +239,14 @@ function paintImage(imgNumber) {
     image.classList.add("bgImage");
     body.prepend(image);
     if(randomImage !== "off") {
-        image.src = `images/${imgNumber + 1}.jpg`;
+        const src = `images/${imgNumber + 1}.jpg`;
+        image.src = src;
+        bgImageZIndexM2.src = src;
         localStorage.setItem(CURRENTIMAGESRC_LS, image.src);
     } else {
         const currentImageSrc = localStorage.getItem(CURRENTIMAGESRC_LS);
         image.src = currentImageSrc;
+        bgImageZIndexM2.src = currentImageSrc;
     }
     paintImageName(image);
 }
