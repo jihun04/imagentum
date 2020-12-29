@@ -82,7 +82,7 @@ function handleDSClick(event) {
   }
 } 
 
-function handleImageClick(event) {
+function appearShowImageScreen(event) {
   const target = event.target;
   const targetSrc = target.src;
   showImageScreen.classList.remove(HIDDEN_CN);
@@ -238,6 +238,10 @@ function handleImgUrlFormTimesClick() {
   }
 }
 
+function disappearShowImageScreen() {
+  
+}
+
 function init() {
   getMaxNumber();
   loadImage();
@@ -247,6 +251,7 @@ function init() {
   randomBtn.addEventListener("click", handleRBtnClick);
   imageUrlForm.addEventListener("submit", addImage);
   imgUrlFormTimes.addEventListener("click", handleImgUrlFormTimesClick);
+  showImageScreenTimes.addEventListener("click", disappearShowImageScreen);
 }
 
 init();
