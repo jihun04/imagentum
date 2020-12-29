@@ -8,7 +8,7 @@ CURSORPOINTER_CN = "cursor--pointer",
 CURRENTIMAGESRC_LS = "current-image-src",
 RANDOMIMAGE_LS = "random-image";
 
-// https://jihun04.github.io/momentun/images
+// https://jihun04.github.io/
 
 let RANDOMCOLOR = "";
 

@@ -229,7 +229,7 @@ function loadBookmarks() {
 }
 
 function handleImgUrlFormTimesClick() {
-  if(bgImage.src == "file:///C:/Users/yujih/Desktop/momentun/index.html#") {
+  if(bgImage.src == "https://jihun04.github.io/momentun/index.html#") {
     bgImage.src = bgImageZIndexM2.src;
     localStorage.setItem(NONEIMAGESRC_LS, "off");
   } else {
