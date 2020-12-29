@@ -7,11 +7,13 @@ imageUrlForm = document.querySelector(".image-url-form"),
 imageUrlInput = imageUrlForm.querySelector("input"),
 imgUrlFormTimes = document.querySelector(".image-url-form__times"),
 showImageScreen = document.querySelector(".show-image-screen"),
-showedImage = showImageScreen.querySelector(".showed-image"),
+showImageScreenRowCenter = showImageScreen.querySelector(".show-image-screen__row-center"),
 bookmark = showImageScreen.querySelector(".show-image-screen__bookmark"),
 showImageScreenTimes = showImageScreen.querySelector(".show-image-screen__times"),
 showImageScreenLeft = showImageScreen.querySelector(".show-image-screen__left"),
 showImageScreenRight = showImageScreen.querySelector(".show-image-screen__right");
+
+let showedImage = document.querySelector(".showed-image")
 
 const IMAGEURL_LS = "image-url",
 IMAGEBOX_CN = "image-box",
@@ -22,14 +24,20 @@ CHECKED_CN = "checked",
 RANDOMON_CN = "random--on",
 NONEIMAGESRC_LS = "none-image-src",
 HIDDEN_CN = "hidden",
-BOOKMARK_LS = "bookmarks";
+BOOKMARK_LS = "bookmarks",
+SHOWEDIMAGE_CN = "showed-image",
+APPEARSHOWEDIMAGELEFT_CN = "appear-showed-image--left",
+DISAPPEARSHOWEDIMAGELEFT_CN = "disappear-showed-image--left",
+APPEARSHOWEDIMAGERIGHT_CN = "appear-showed-image--right",
+DISAPPEARSHOWEDIMAGERIGHT_CN = "disappear-showed-image--right";
 
 let imageUrl = [],
 maxNumber = "",
 number = 1,
 imageSrc = [],
 bookmarks = [],
-newId = 0;
+newId = 0,
+currentShowedImageId = 0;
 
 function getMaxNumber() {
   const imageUrls = localStorage.getItem(IMAGEURL_LS);
@@ -87,8 +95,59 @@ function handleDSClick(event) {
 function appearShowImageScreen(event) {
   const target = event.target;
   const targetSrc = target.src;
+  const targetId = parseInt(target.id);
   showImageScreen.classList.remove(HIDDEN_CN);
   showedImage.src = targetSrc;
+  currentShowedImageId = targetId;
+}
+
+function disappearShowImageScreen() {
+  showImageScreen.classList.add(HIDDEN_CN);
+  showedImage.src = "#";
+  currentShowedImageId = 0;
+}
+
+function handleShowedImgAE() {
+  showImageScreenLeft.addEventListener("click", prevShowedImage);
+  showImageScreenRight.addEventListener("click", nextShowedImage);
+  const newShowedImage = showImageScreenRowCenter.firstChild;
+  showImageScreenRowCenter.removeChild(showedImage);
+  newShowedImage.className = SHOWEDIMAGE_CN;
+  showedImage = newShowedImage;
+}
+
+function prevShowedImage() {
+  showImageScreenLeft.removeEventListener("click", prevShowedImage);
+  showImageScreenRight.removeEventListener("click", nextShowedImage);
+  const newShowedImage = document.createElement("img");
+  currentShowedImageId -= 1;
+  const newShowedImageSrc = imageSrc.filter(function(src) {
+    return currentShowedImageId === src.id;
+  })
+  newShowedImageSrc.forEach(function(src) {
+    newShowedImage.src = src.src;
+  })
+  newShowedImage.classList.add(APPEARSHOWEDIMAGELEFT_CN);
+  showedImage.classList.add(DISAPPEARSHOWEDIMAGERIGHT_CN);
+  showImageScreenRowCenter.prepend(newShowedImage);
+  showedImage.addEventListener("animationend", handleShowedImgAE);
+}
+
+function nextShowedImage() {
+  showImageScreenLeft.removeEventListener("click", prevShowedImage);
+  showImageScreenRight.removeEventListener("click", nextShowedImage);
+  const newShowedImage = document.createElement("img");
+  currentShowedImageId += 1;
+  const newShowedImageSrc = imageSrc.filter(function(src) {
+    return currentShowedImageId === src.id;
+  })
+  newShowedImageSrc.forEach(function(src) {
+    newShowedImage.src = src.src;
+  })
+  newShowedImage.classList.add(APPEARSHOWEDIMAGERIGHT_CN);
+  showedImage.classList.add(DISAPPEARSHOWEDIMAGELEFT_CN);
+  showImageScreenRowCenter.prepend(newShowedImage);
+  showedImage.addEventListener("animationend", handleShowedImgAE);
 }
 
 function genImageBoxCount() {
@@ -239,10 +298,6 @@ function handleImgUrlFormTimesClick() {
   }
 }
 
-function disappearShowImageScreen() {
-  
-}
-
 function init() {
   getMaxNumber();
   loadImage();
@@ -253,6 +308,8 @@ function init() {
   imageUrlForm.addEventListener("submit", addImage);
   imgUrlFormTimes.addEventListener("click", handleImgUrlFormTimesClick);
   showImageScreenTimes.addEventListener("click", disappearShowImageScreen);
+  showImageScreenLeft.addEventListener("click", prevShowedImage);
+  showImageScreenRight.addEventListener("click", nextShowedImage);
 }
 
 init();
