@@ -150,14 +150,13 @@ main {
   color: var(--white);
 }
 .timestamp {
-  position: absolute;
-  top: 265px;
   text-align: center;
   border-top-left-radius: var(--radius);
   border-top-right-radius: var(--radius);
+  background-color: rgba(0, 0, 0, 0.1);
   color: var(--white);
-  box-shadow: 0 0 50px -0.7em rgba(255, 255, 255, 0.1);
   font-size: 20px;
+  padding: 0 6px;
 }
 .appear-timestamp {
   animation: appearTimestamp 0.5s ease-in-out forwards;
@@ -195,7 +194,7 @@ main {
   margin-bottom: 30px;
   border-radius: var(--radius);
   background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 70px 300px 1em rgba(0, 0, 0, 0.15);
+  box-shadow: 0 30px 300px 0em rgba(0, 0, 0, 0.15);
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
   z-index: 2;
