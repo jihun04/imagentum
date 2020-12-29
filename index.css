@@ -649,16 +649,16 @@ main {
   position: absolute;
 }
 .appear-showed-image--left {
-  animation: appearShowedImageLeftA 0.3s ease-in-out;
+  animation: appearShowedImageLeftA 1s ease-in-out;
 }
 .appear-showed-image--right {
-  animation: appearShowedImageRightA 0.3s ease-in-out;
+  animation: appearShowedImageRightA 1s ease-in-out;
 }
 .disappear-showed-image--left {
-  animation: disappearShowedImageLeftA 0.3s ease-in-out;
+  animation: disappearShowedImageLeftA 1s ease-in-out;
 }
 .disappear-showed-image--right {
-  animation: disappearShowedImageRightA 0.3s ease-in-out;
+  animation: disappearShowedImageRightA 1s ease-in-out;
 }
 @keyframes appearShowedImageLeftA {
   from {
