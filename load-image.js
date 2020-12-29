@@ -215,13 +215,6 @@ function addImage(event) {
   }
 }
 
-function loadImgUrlFormTimes() {
-  const noneImageSrc = localStorage.getItem(NONEIMAGESRC_LS);
-  if(noneImageSrc === "on") {
-    bgImage.src = "#";
-  }
-}
-
 function loadBookmarks() {
   const currentBookmarks = localStorage.getItem(BOOKMARK_LS);
   if(currentBookmarks !== null) {
@@ -229,13 +222,20 @@ function loadBookmarks() {
   }
 }
 
+function loadImgUrlFormTimes() {
+  const noneImageSrc = localStorage.getItem(NONEIMAGESRC_LS);
+  if(noneImageSrc === "on") {
+    bgImage.src = "#";
+  }
+}
+
 function handleImgUrlFormTimesClick() {
-  if(bgImage.src == "file:///C:/Users/yujih/Desktop/momentun/index.html#") {
-    bgImage.src = bgImageZIndexM2.src;
-    localStorage.setItem(NONEIMAGESRC_LS, "off");
-  } else {
+  if(bgImage.src === bgImageZIndexM2.src) {
     bgImage.src = "#";
     localStorage.setItem(NONEIMAGESRC_LS, "on");
+  } else {
+    bgImage.src = bgImageZIndexM2.src;
+    localStorage.setItem(NONEIMAGESRC_LS, "off");
   }
 }
 
