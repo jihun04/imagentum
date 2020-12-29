@@ -225,16 +225,16 @@ function loadBookmarks() {
 function loadImgUrlFormTimes() {
   const noneImageSrc = localStorage.getItem(NONEIMAGESRC_LS);
   if(noneImageSrc === "on") {
-    bgImage.src = "#";
+    bgImage.style.backgroundImage = "url('#')";
   }
 }
 
 function handleImgUrlFormTimesClick() {
-  if(bgImage.src === bgImageZIndexM2.src) {
-    bgImage.src = "#";
+  if(bgImage.style.backgroundImage === bgImageZIndexM2.style.backgroundImage) {
+    bgImage.style.backgroundImage = "url('#')";
     localStorage.setItem(NONEIMAGESRC_LS, "on");
   } else {
-    bgImage.src = bgImageZIndexM2.src;
+    bgImage.style.backgroundImage = bgImageZIndexM2.style.backgroundImage;
     localStorage.setItem(NONEIMAGESRC_LS, "off");
   }
 }
