@@ -43,7 +43,7 @@ function getMaxNumber() {
 
 function handleDelClick(targetImage, targetImageSrc) {
   const cleanImageUrl = imageUrl.filter(function(url) {
-    return targetImageSrc === url 
+    return targetImageSrc !== url 
   })
   const targetImageBox = targetImage.parentNode;
   const targetImageColumn = targetImageBox.parentNode;
@@ -54,10 +54,12 @@ function handleDelClick(targetImage, targetImageSrc) {
 
 function handleSelClick(firstChild, targetImageSrc) {
   const selected = document.querySelector(".checked");
-  selected.classList.remove(CHECKED_CN);
+  if(selected !== null) {
+    selected.classList.remove(CHECKED_CN);
+  }
   firstChild.classList.add(CHECKED_CN);
-  bgImage.src = targetImageSrc;
-  bgImageZIndexM2.src = targetImageSrc;
+  bgImage.style.backgroundImage = `url('${targetImageSrc}')`;
+  bgImageZIndexM2.style.backgroundImage = `url('${targetImageSrc}')`;
   localStorage.setItem(CURRENTIMAGESRC_LS, targetImageSrc);
 }
 
@@ -142,11 +144,10 @@ function paintImage(src, div) {
   selCheckBox.classList.add(CHECKBOX_CN);
   selSpan.innerText = "Select";
   if(div === "off") {
-    image.src = `images/${src}.jpg`;
-  } else if(div === "on") {
-    image.src = src;
+    src = `images/${src}.jpg`;
   }
-  if(currentImageSrc === image.src) {
+  image.src = src;
+  if(currentImageSrc === src) {
     selCheckBox.classList.add(CHECKED_CN);
   }
   image.id = newId;
@@ -155,7 +156,7 @@ function paintImage(src, div) {
     src: image.src
   }
   imageSrc.push(srcObj);
-  image.addEventListener("click", handleImageClick);
+  image.addEventListener("click", appearShowImageScreen);
   imageSelBtn.addEventListener("click", handleDSClick);
 }
 
