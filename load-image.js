@@ -43,7 +43,7 @@ function getMaxNumber() {
 
 function handleDelClick(targetImage, targetImageSrc) {
   const cleanImageUrl = imageUrl.filter(function(url) {
-    return targetImageSrc === url 
+    return targetImageSrc !== url 
   })
   const targetImageBox = targetImage.parentNode;
   const targetImageColumn = targetImageBox.parentNode;
@@ -54,7 +54,9 @@ function handleDelClick(targetImage, targetImageSrc) {
 
 function handleSelClick(firstChild, targetImageSrc) {
   const selected = document.querySelector(".checked");
-  selected.classList.remove(CHECKED_CN);
+  if(selected !== null) {
+    selected.classList.remove(CHECKED_CN);
+  }
   firstChild.classList.add(CHECKED_CN);
   bgImage.style.backgroundImage = `url('${targetImageSrc}')`;
   bgImageZIndexM2.style.backgroundImage = `url('${targetImageSrc}')`;
