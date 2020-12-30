@@ -104,17 +104,9 @@ main {
 }
 @keyframes iconBoxBarAnimation {
   0% {
-    transform: translateX(0);
-  }
-  50% {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    transform: translateX(-2px);
+    opacity: 1;
   }
   100% {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    transform: translateX(-2px);
     opacity: 0;
   }
 }
