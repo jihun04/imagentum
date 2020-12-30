@@ -99,7 +99,7 @@ main {
 }
 .icon-box-hover:hover ~ .icon-box {
   z-index: 3;
-  animation: iconBoxAnimation 0.1s ease-in-out forwards;
+  animation: iconBoxAnimation 0.1s ease-out forwards;
   animation-delay: 0.1s;
 }
 @keyframes iconBoxBarAnimation {
