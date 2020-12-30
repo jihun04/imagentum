@@ -1,5 +1,7 @@
 const weather = document.querySelector(".js-weather"),
-temperatureIcon = document.querySelector(".js-weather-icon");
+weatherIcon = document.querySelector(".weather-icon"),
+temperatureIcon = document.querySelector(".js-weather-icon"),
+weatherDescriptionText = document.querySelector(".weather-description__text");
 
 const API_KEY = "85a868745925286701deacff570bc78b"
 const COORDS = "coords",
@@ -11,22 +13,31 @@ TEMPERATURELOWICON = "fa-temperature-low";
 
 function getWeather(lat, lng) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${API_KEY}&units=metric`
-    )
-    .then(function(responce) {
+    ).then(function(responce) {
         return responce.json();
-    })
-    .then(function(json) {
+    }).then(function(json) {
         const temperature = json.main.temp;
         const place = json.name;
+        const jsonWeather = json.weather;
+        jsonWeather.forEach(function(jsonWeather) {
+            const iconName = jsonWeather.icon;
+            const iconSrc = `http://openweathermap.org/img/wn/${iconName}.png`;
+            const description = jsonWeather.description;
+            weatherIcon.style.backgroundImage = `url('${iconSrc}')`;
+            weatherDescriptionText.innerText = description;
+        })
         weather.innerText = `${temperature}° (${place})`;
         if(temperature >= 29) {
-            temperatureIcon.className = FAS;
+            temperatureIcon.className = "js-weather-icon";
+            temperatureIcon.classList.add(FAS);
             temperatureIcon.classList.add(TEMPERATUREHIGHICON);
         } else if(temperature <=28 && temperature >= 18) {
-            temperatureIcon.className = FAR;
+            temperatureIcon.className = "js-weather-icon";
+            temperatureIcon.classList.add(FAR);
             temperatureIcon.classList.add(SMILEICON);
         } else {
-            temperatureIcon.className = FAS;
+            temperatureIcon.className = "js-weather-icon"
+            temperatureIcon.classList.add(FAS);
             temperatureIcon.classList.add(TEMPERATURELOWICON);
         }
     })
