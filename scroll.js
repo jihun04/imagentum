@@ -1,5 +1,4 @@
-const arrowBox = document.querySelector(".arrow-box"),
-arrowIcon = arrowBox.querySelector("i");
+const arrowIcon = document.querySelector(".arrow-icon");
 
 const DOWN_CN = "fa-chevron-down",
 UP_CN = "fa-chevron-up",
@@ -19,15 +18,15 @@ function handleScroll() {
   const scrollTop = document.documentElement.scrollTop;
   const top = screenHeight - scrollTop;
   if(top <= 0) {
-    arrowBox.classList.add(POSITIONFIXED_CN);
-    arrowBox.classList.remove(SPIN_CN);
+    arrowIcon.classList.add(POSITIONFIXED_CN);
+    arrowIcon.classList.remove(SPIN_CN);
     arrowIcon.classList.add(UP_CN);
     arrowIcon.classList.remove(DOWN_CN);
     arrowIcon.addEventListener("click", pageUp);
     arrowIcon.removeEventListener("click", pageDown);
   } else {
-    arrowBox.classList.add(SPIN_CN)
-    arrowBox.classList.remove(POSITIONFIXED_CN);
+    arrowIcon.classList.add(SPIN_CN)
+    arrowIcon.classList.remove(POSITIONFIXED_CN);
     arrowIcon.classList.add(DOWN_CN);
     arrowIcon.classList.remove(UP_CN);
     arrowIcon.addEventListener("click", pageDown);
