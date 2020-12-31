@@ -49,14 +49,18 @@ function getMaxNumber() {
   }
 }
 
-function handleDelClick(targetImage, targetImageSrc) {
+function handleDelClick(targetImage, targetImageSrc, targetImageId) {
   const cleanImageUrl = imageUrl.filter(function(url) {
     return targetImageSrc !== url 
+  })
+  const cleanImageSrc = imageSrc.filter(function(src) {
+    return targetImageId !== src.id
   })
   const targetImageBox = targetImage.parentNode;
   const targetImageColumn = targetImageBox.parentNode;
   targetImageColumn.removeChild(targetImageBox);
   imageUrl = cleanImageUrl;
+  imageSrc = cleanImageSrc;
   saveImageUrl();
 }
 
@@ -84,9 +88,10 @@ function handleDSClick(event) {
   const lastChild = targetImageBtns.lastChild;
   const lastChildText = lastChild.innerText;
   const targetImage = targetImageBtns.parentNode.previousSibling;
+  const targetImageId = parseInt(targetImage.id);
   const targetImageSrc = targetImage.src;
   if(lastChildText === "Delete") {
-    handleDelClick(targetImage, targetImageSrc);
+    handleDelClick(targetImage, targetImageSrc, targetImageId);
   } else {
     handleSelClick(firstChild, targetImageSrc);
   }
