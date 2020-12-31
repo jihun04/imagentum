@@ -17,11 +17,13 @@ body {
   font-family: "Hind", "Open Sans", sans-serif;
   height: 100vh;
   min-height: 100vh;
+  width: 100vw;
   box-sizing: border-box;
   font-size: 30px;
   color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0;
 }
 body::-webkit-scrollbar {
@@ -577,17 +579,18 @@ main {
     background-color: rgba(0, 0, 0, 0);
   }
 }
-.arrow-box {
+.arrow-icon {
   position: absolute;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0);
   color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 20px;
   font-size: 20px;
-  z-index: 1;
+  z-index: 3;
+  margin: 0 auto;
+  cursor: pointer;
 }
 .spin-y-180 {
   animation: spinArrowAnimation 0.3s ease-in-out;
@@ -613,10 +616,6 @@ main {
   to {
     transform: translateY(0);
   }
-}
-.arrow-box i {
-  z-index: 3;
-  cursor: pointer;
 }
 .hidden {
   visibility: hidden;
@@ -646,6 +645,10 @@ main {
   justify-content: space-between;
   color: var(--white);
   cursor: pointer;
+}
+.show-image-screen__row-top * {
+  position: relative;
+  z-index: 4;
 }
 .show-image-screen__book-mark:hover {
   color: #ffed6d;
@@ -730,6 +733,7 @@ footer {
   display: flex;
   flex-direction: column;
   padding: 20px 15px;
+  width: 100vw;
 }
 footer > div {
   display: flex;

@@ -112,7 +112,7 @@ function disappearShowImageScreen() {
   currentShowedImageId = 0;
 }
 
-function handleShowedImgAE() {
+function handleShowedImgAEnd() {
   showImageScreenLeft.addEventListener("click", prevShowedImage);
   showImageScreenRight.addEventListener("click", nextShowedImage);
   const newShowedImage = showImageScreenRowCenter.firstChild;
@@ -122,37 +122,43 @@ function handleShowedImgAE() {
 }
 
 function prevShowedImage() {
-  showImageScreenLeft.removeEventListener("click", prevShowedImage);
-  showImageScreenRight.removeEventListener("click", nextShowedImage);
-  const newShowedImage = document.createElement("img");
-  currentShowedImageId -= 1;
-  const newShowedImageSrc = imageSrc.filter(function(src) {
-    return currentShowedImageId === src.id;
-  })
-  newShowedImageSrc.forEach(function(src) {
-    newShowedImage.src = src.src;
-  })
-  newShowedImage.classList.add(APPEARSHOWEDIMAGELEFT_CN);
-  showedImage.classList.add(DISAPPEARSHOWEDIMAGERIGHT_CN);
-  showImageScreenRowCenter.prepend(newShowedImage);
-  showedImage.addEventListener("animationend", handleShowedImgAE);
+  if(currentShowedImageId - 1 >= 1) {
+    showImageScreenLeft.removeEventListener("click", prevShowedImage);
+    showImageScreenRight.removeEventListener("click", nextShowedImage);
+    const newShowedImage = document.createElement("img");
+    currentShowedImageId -= 1;
+    const newShowedImageSrc = imageSrc.filter(function(src) {
+      return currentShowedImageId === src.id;
+    })
+    newShowedImage.src = newShowedImageSrc[0].src;
+    newShowedImage.classList.add(APPEARSHOWEDIMAGELEFT_CN);
+    showedImage.classList.add(DISAPPEARSHOWEDIMAGERIGHT_CN);
+    showImageScreenRowCenter.prepend(newShowedImage);
+    showedImage.addEventListener("animationend", handleShowedImgAEnd);
+  } else {
+    nextShowedImage();
+  }
 }
 
 function nextShowedImage() {
-  showImageScreenLeft.removeEventListener("click", prevShowedImage);
-  showImageScreenRight.removeEventListener("click", nextShowedImage);
-  const newShowedImage = document.createElement("img");
-  currentShowedImageId += 1;
-  const newShowedImageSrc = imageSrc.filter(function(src) {
-    return currentShowedImageId === src.id;
-  })
-  newShowedImageSrc.forEach(function(src) {
-    newShowedImage.src = src.src;
-  })
-  newShowedImage.classList.add(APPEARSHOWEDIMAGERIGHT_CN);
-  showedImage.classList.add(DISAPPEARSHOWEDIMAGELEFT_CN);
-  showImageScreenRowCenter.prepend(newShowedImage);
-  showedImage.addEventListener("animationend", handleShowedImgAE);
+  if(currentShowedImageId + 1 <= imageSrc.length) {
+    showImageScreenLeft.removeEventListener("click", prevShowedImage);
+    showImageScreenRight.removeEventListener("click", nextShowedImage);
+    const newShowedImage = document.createElement("img");
+    currentShowedImageId += 1;
+    const newShowedImageSrc = imageSrc.filter(function(src) {
+      return currentShowedImageId === src.id;
+    })
+    newShowedImageSrc.forEach(function(src) {
+      newShowedImage.src = src.src;
+    })
+    newShowedImage.classList.add(APPEARSHOWEDIMAGERIGHT_CN);
+    showedImage.classList.add(DISAPPEARSHOWEDIMAGELEFT_CN);
+    showImageScreenRowCenter.prepend(newShowedImage);
+    showedImage.addEventListener("animationend", handleShowedImgAEnd);
+  } else {
+    prevShowedImage();
+  }
 }
 
 function genImageBoxCount() {
