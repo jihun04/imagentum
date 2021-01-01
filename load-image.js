@@ -102,13 +102,13 @@ function appearShowImageScreen(event) {
   const targetSrc = target.src;
   const targetId = parseInt(target.id);
   showImageScreen.classList.remove(HIDDEN_CN);
-  showedImage.src = targetSrc;
+  showedImage.style.backgroundImage = `url('${targetSrc}')`;
   currentShowedImageId = targetId;
 }
 
 function disappearShowImageScreen() {
   showImageScreen.classList.add(HIDDEN_CN);
-  showedImage.src = "#";
+  showedImage.style.backgroundImage = `url('#')`;
   currentShowedImageId = 0;
 }
 
@@ -125,12 +125,12 @@ function prevShowedImage() {
   if(currentShowedImageId - 1 >= 1) {
     showImageScreenLeft.removeEventListener("click", prevShowedImage);
     showImageScreenRight.removeEventListener("click", nextShowedImage);
-    const newShowedImage = document.createElement("img");
+    const newShowedImage = document.createElement("div");
     currentShowedImageId -= 1;
     const newShowedImageSrc = imageSrc.filter(function(src) {
       return currentShowedImageId === src.id;
     })
-    newShowedImage.src = newShowedImageSrc[0].src;
+    newShowedImage.style.backgroundImage = `url('${newShowedImageSrc[0].src}')`
     newShowedImage.classList.add(APPEARSHOWEDIMAGELEFT_CN);
     showedImage.classList.add(DISAPPEARSHOWEDIMAGERIGHT_CN);
     showImageScreenRowCenter.prepend(newShowedImage);
@@ -144,14 +144,12 @@ function nextShowedImage() {
   if(currentShowedImageId + 1 <= imageSrc.length) {
     showImageScreenLeft.removeEventListener("click", prevShowedImage);
     showImageScreenRight.removeEventListener("click", nextShowedImage);
-    const newShowedImage = document.createElement("img");
+    const newShowedImage = document.createElement("div");
     currentShowedImageId += 1;
     const newShowedImageSrc = imageSrc.filter(function(src) {
       return currentShowedImageId === src.id;
     })
-    newShowedImageSrc.forEach(function(src) {
-      newShowedImage.src = src.src;
-    })
+    newShowedImage.style.backgroundImage = `url('${newShowedImageSrc[0].src}')`
     newShowedImage.classList.add(APPEARSHOWEDIMAGERIGHT_CN);
     showedImage.classList.add(DISAPPEARSHOWEDIMAGELEFT_CN);
     showImageScreenRowCenter.prepend(newShowedImage);
