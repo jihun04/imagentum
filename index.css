@@ -316,6 +316,7 @@ main {
   height: 25px;
   text-align: center;
   cursor: pointer;
+  transition: color 0.1s ease-in-out;
 }
 .toDo-bar:hover {
   color: rgba(0, 0, 0, 0.6);
@@ -410,6 +411,18 @@ main {
   display: flex;
   align-items: flex-start;
   margin-bottom: 8px;
+  animation: appearToDoListItem 0.2s ease-in-out;
+}
+@keyframes appearToDoListItem {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 16px;
+  }
+  100% {
+    height: auto;
+  }
 }
 .js-toDoList--done li button,
 .js-toDoList li button {
@@ -424,6 +437,17 @@ main {
   color: rgba(0, 0, 0, 0.6);
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
+  animation: appearToDoDelBtn 0.3s ease-in-out;
+}
+@keyframes appearToDoDelBtn {
+  from {
+    opacity: 0.5;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 .toDoList--close li {
   animation: hiddenLIAnimation 0.2s ease-in-out forwards;
@@ -517,6 +541,17 @@ main {
   overflow-x: auto;
   color: var(--white);
   cursor: alias;
+  opacity: 0;
+  animation: toDoTextAnimation 0.3s ease-in-out forwards;
+  animation-delay: 0.3s;
+}
+@keyframes toDoTextAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .toDo-text--done {
   color: rgba(255, 255, 255, 0.5);
