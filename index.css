@@ -243,6 +243,7 @@ main {
 }
 .weather-description {
   height: 50px;
+  width: fit-content;
   visibility: hidden;
   position: relative;
   font-size: 25px;
