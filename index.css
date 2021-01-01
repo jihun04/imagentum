@@ -235,6 +235,7 @@ main {
   height: 50px;
   background-position: center;
   background-size: 70px;
+  margin-right: 10px;
 }
 .js-weather {
   font-size: 23px;
@@ -588,7 +589,6 @@ main {
   width: 20px;
   font-size: 20px;
   z-index: 3;
-  margin: 0 auto;
   cursor: pointer;
 }
 .spin-y-180 {
