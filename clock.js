@@ -37,7 +37,6 @@ function getTime() {
     let day = dates.getDay();
     const minutes = dates.getMinutes();
     const hours = dates.getHours();
-    const seconds = dates.getSeconds();
     if(month === 0) {
         month = "January";
     }
@@ -95,7 +94,7 @@ function getTime() {
     if(day === 0) {
         day = "Sun";
     }
-    clockTitle.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ?`0${seconds}` : seconds}`;
+    clockTitle.innerText = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
     timestampSpan.innerText = `${month} ${date < 10 ? `0${date}` : date} ${day}, ${year}`;
     if(clockColorLs === "on") {
         changeClockColor();

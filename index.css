@@ -1,9 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Hind:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 :root {
-  --black: rgba(0, 0, 0, 0.4);
+  --bg-black: rgba(0, 0, 0, 0.45);
+  --bg-white: rgba(255, 255, 255, 0.45);
+  --black: rgba(0, 0, 0, 0.9);
   --white: rgba(255, 255, 255, 0.9);
+  --gray: rgba(255, 255, 255, 0.6);
+  --alpha-zero: rgba(0, 0, 0, 0);
   --radius: 10px;
+  --translate-y-down: 10px;
+  --translate-y-up: -10px;
+  --input-height: 40px;
+  --input-padding: 10px;
+  --font-size: 19px;
 }
 * {
   box-sizing: border-box;
@@ -14,16 +23,15 @@
 }
 body {
   position: relative;
-  font-family: "Hind", "Open Sans", sans-serif;
+  font-family: "Quicksand", sans-serif;
   height: 100vh;
   min-height: 100vh;
   width: 100vw;
-  font-size: 30px;
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 body::-webkit-scrollbar {
   width: 0;
@@ -33,7 +41,7 @@ main {
   height: 100vh;
   width: 100vw;
   display: flex;
-  box-shadow: inset 0 0 70px -1em black;
+  box-shadow: inset 0 0 60px -2em var(--black);
 }
 .column {
   height: 100%;
@@ -50,7 +58,7 @@ main {
   align-items: flex-end;
 }
 .column__column {
-  height: 34%;
+  height: 50%;
   display: flex;
   position: relative;
 }
@@ -60,171 +68,88 @@ main {
 .column__column:last-child {
   align-items: flex-end;
 }
-.icon-box-hover {
-  position: absolute;
-  width: 80px;
-  height: 100%;
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-  z-index: 2;
-}
-.icon-box-bar {
-  position: absolute;
-  height: 100%;
-  width: 10px;
-  margin-left: 2px;
-  border-radius: 20px;
-  background-color: var(--black);
-}
-.icon-box:hover + .icon-box-bar {
-  animation: iconBoxBarAnimation 0.1s ease-in-out forwards;
-}
-.icon-box-hover:hover ~ .icon-box-bar {
-  animation: iconBoxBarAnimation 0.1s ease-in-out forwards;
-}
-.icon-box {
-  background-color: var(--black);
-  border-top-right-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  opacity: 0;
-}
-.icon-box:hover {
-  z-index: 3;
-  animation: iconBoxAnimation 0.1s ease-in-out forwards;
-  animation-delay: 0.1s;
-}
-.icon-box-hover:hover ~ .icon-box {
-  z-index: 3;
-  animation: iconBoxAnimation 0.1s ease-out forwards;
-  animation-delay: 0.1s;
-}
-@keyframes iconBoxBarAnimation {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes iconBoxAnimation {
-  0% {
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-.icon-box__icon {
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-}
-.icon-box__icon:last-child {
-  align-items: flex-end;
-}
-.icon-box__icon a {
-  color: rgba(255, 255, 255, 0.6);
-}
-.icon-box__icon a:visited {
-  color: rgba(255, 255, 255, 0.6);
-}
-.icon-box__icon .current-page {
-  color: var(--white);
-}
-.icon-box__icon .current-page:visited {
-  color: var(--white);
-}
 .timestamp {
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
   text-align: center;
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
   color: var(--white);
-  font-size: 28px;
+  font-size: 24px;
   padding: 0 6px;
 }
 .appear-timestamp {
-  animation: appearTimestamp 0.5s ease-in-out forwards;
+  animation: appearTimestamp 0.35s ease-in-out forwards;
 }
 .disappear-timestamp {
-  animation: disappearTimestamp 0.3s ease-in-out forwards;
+  animation: disappearTimestamp 0.35s ease-in-out forwards;
 }
 @keyframes appearTimestamp {
   from {
     visibility: hidden;
-    transform: translateY(-10px) rotateX(-90deg);
-    opacity: 0.5;
+    transform: translateY(-10px);
+    opacity: 0;
   }
   to {
-    transform: translateY(0) rotateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 @keyframes disappearTimestamp {
   from {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     opacity: 1;
   }
   to {
     visibility: hidden;
-    transform: translateY(-10px) scale(0.8);
+    transform: translateY(-10px);
     opacity: 0;
   }
 }
 .js-clock {
   display: flex;
   align-items: center;
-  font-size: 80px;
-  margin-bottom: 30px;
+  font-size: 70px;
+  margin-bottom: 20px;
   border-radius: var(--radius);
-  background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 30px 300px 0em rgba(0, 0, 0, 0.15);
   font-family: "Open Sans", sans-serif;
   cursor: pointer;
   z-index: 2;
+  color: var(--white);
 }
 .js-title {
   margin: 0;
   text-align: center;
 }
 .js-form input {
-  color: white;
-  background-color: rgba(0, 0, 0, 0);
-  font-size: 52px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  font-family: "quicksand", sans-serif;
+  color: var(--white);
+  background-color: var(--alpha-zero);
+  font-size: 50px;
   outline: none;
   border: none;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
+  border-bottom: 1.5px solid var(--white);
+  transition: all 0.35s ease-in-out;
   text-align: center;
 }
-.js-form input:focus {
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  box-shadow: 0 10px 50px -1em black;
-}
 .js-form input::placeholder {
-  color: white;
+  font-family: "quicksand", sans-serif;
+  color: var(--white);
 }
 .js-greetings {
-  font-size: 52px;
-  font-weight: 500;
+  font-weight: 400;
+  color: var(--white);
+  font-size: 50px;
   margin: 0;
   width: 90vw;
   text-align: center;
   cursor: pointer;
 }
 .weather-text {
-  margin: 5px;
+  margin-left: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: var(--white);
+  font-size: var(--font-size);
 }
 .weather-text > * {
   display: flex;
@@ -235,23 +160,18 @@ main {
   height: 50px;
   background-position: center;
   background-size: 70px;
-  margin-right: 10px;
-}
-.js-weather {
-  font-size: 23px;
-  transform: translateY(3px);
+  margin-right: 5px;
 }
 .weather-description {
-  height: 50px;
+  height: 40px;
   width: fit-content;
   visibility: hidden;
   position: relative;
-  font-size: 25px;
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(var(--translate-y-down));
   transition: all 0.3s ease-in-out;
-  padding: 10px;
-  background-color: var(--black);
+  padding: 0 10px;
+  background-color: var(--bg-black);
   border-radius: var(--radius);
 }
 .weather-text__text:hover + .weather-description {
@@ -270,36 +190,33 @@ main {
 }
 .js-weather-icon {
   position: absolute;
-  right: -1.6em;
+  right: -1.4em;
 }
 .link-btn {
   position: static;
   bottom: 0;
   left: 0;
   color: var(--white);
-  background-color: var(--black);
-  font-size: 22px;
-  padding: 2px 5px;
+  background-color: var(--bg-black);
+  font-size: var(--font-size);
+  padding: 7px 10px;
   border-top-right-radius: var(--radius);
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 .link-btn--active {
-  color: rgba(0, 0, 0, 0.9);
-  background-color: rgba(255, 255, 255, 0.4);
+  color: var(--black);
+  background-color: var(--bg-white);
 }
 .link-btn > i {
-  margin-right: 4px;
-}
-.link-btn > span {
-  transform: translateY(3px);
+  margin-right: 5px;
 }
 .js-img-name-text {
   margin-left: 5px;
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.4);
-  transition: color 0.3s ease-in-out;
+  font-size: 18px;
+  color: var(--bg-white);
+  transition: color 0.35s ease-in-out;
 }
 .js-img-name-text:hover {
   color: var(--white);
@@ -310,36 +227,43 @@ main {
 .toDo-box {
   overflow-y: auto;
   border-bottom-left-radius: var(--radius);
-  background-color: var(--black);
-  font-size: 20px;
+  background-color: var(--bg-black);
+  font-size: var(--font-size);
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
   z-index: 2;
 }
 .toDo-box::-webkit-scrollbar {
-  color: rgba(0, 0, 0, 0);
+  color: var(--alpha-zero);
   width: 0;
 }
+.ja-toDoFrom {
+  width: 100%;
+}
 .ja-toDoFrom input {
-  font-size: 20px;
-  padding: 15px;
-  color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(255, 255, 255, 0);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  font-family: "Quicksand", sans-serif;
+  font-size: var(--font-size);
+  height: var(--input-height);
+  width: 100%;
+  padding: var(--input-padding);
+  color: var(--white);
+  background-color: var(--alpha-zero);
   border: none;
   outline: none;
 }
 .ja-toDoFrom input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--gray);
 }
 .toDo-bar-box {
   width: 100%;
 }
 .toDo-bar {
-  font-size: 20px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0);
-  background-color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size);
+  color: var(--alpha-zero);
+  background-color: var(--gray);
   width: 100%;
   height: 25px;
   text-align: center;
@@ -347,17 +271,17 @@ main {
   transition: color 0.1s ease-in-out;
 }
 .toDo-bar:hover {
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--black);
 }
 .toDo-bar span {
   position: relative;
   top: -2px;
 }
 .appear-toDo-bar {
-  animation: appearToDoBar 0.4s ease-in-out;
+  animation: appearToDoBar 0.35s ease-in-out;
 }
 .disappear-toDo-bar {
-  animation: disappearToDoBar 0.4s ease-in-out forwards;
+  animation: disappearToDoBar 0.35s ease-in-out forwards;
   animation-delay: 0.1s;
 }
 @keyframes appearToDoBar {
@@ -436,10 +360,11 @@ main {
 }
 .js-toDoList--done li,
 .js-toDoList li {
+  width: 100%;
   display: flex;
   align-items: flex-start;
   margin-bottom: 8px;
-  animation: appearToDoListItem 0.2s ease-in-out;
+  animation: appearToDoListItem 0.35s ease-in-out;
 }
 @keyframes appearToDoListItem {
   0% {
@@ -454,18 +379,26 @@ main {
 }
 .js-toDoList--done li button,
 .js-toDoList li button {
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  font-family: "Quicksand", sans-serif;
   margin: 5px 0;
   margin-right: 5px;
   height: 20px;
   width: 20px;
   display: flex;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  align-items: center;
+  border: 2px solid var(--bg-white);
   border-radius: 5px;
-  color: rgba(0, 0, 0, 0.6);
-  background-color: rgba(255, 255, 255, 0);
+  color: var(--gray);
+  background-color: var(--alpha-zero);
   cursor: pointer;
-  animation: appearToDoDelBtn 0.3s ease-in-out;
+  animation: appearToDoDelBtn 0.4s ease-in-out;
+}
+.js-toDoList--done li button:hover,
+.js-toDoList li button:hover {
+  border: 2px solid var(--gray);
+  color: var(--white);
 }
 @keyframes appearToDoDelBtn {
   from {
@@ -478,12 +411,12 @@ main {
   }
 }
 .toDoList--close li {
-  animation: hiddenLIAnimation 0.2s ease-in-out forwards;
-  animation-delay: 0.2s;
+  animation: hiddenLIAnimation 0.35s ease-in-out forwards;
+  animation-delay: 0.3s;
 }
 .toDoList--close li button {
-  animation: hiddenLIAnimation 0.2s ease-in-out forwards;
-  animation-delay: 0.2s;
+  animation: hiddenLIAnimation 0.35s ease-in-out forwards;
+  animation-delay: 0.3s;
 }
 @keyframes hiddenLIAnimation {
   from {
@@ -497,7 +430,7 @@ main {
   }
 }
 .toDoLists-btns {
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 2);
   border-radius: var(--radius);
   display: flex;
   justify-content: center;
@@ -542,13 +475,15 @@ main {
   }
 }
 .toDoLists-btns * {
-  width: 110px;
-  padding: 10px 0;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  font-family: "Quicksand", sans-serif;
+  width: 120px;
+  padding: 5px 0;
   border: none;
   outline: none;
-  font-size: 20px;
-  background-color: rgba(0, 0, 0, 0);
-  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size);
+  background-color: var(--alpha-zero);
+  color: var(--white);
   cursor: pointer;
 }
 .toDoLists-btns button:first-child {
@@ -562,16 +497,16 @@ main {
   border-bottom-right-radius: 9px;
 }
 .toDoLists-btns .clicked-list-btn {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: var(--bg-white);
 }
 .toDo-text {
-  width: 230px;
+  width: 250px;
   overflow-x: auto;
   color: var(--white);
   cursor: alias;
   opacity: 0;
-  animation: toDoTextAnimation 0.3s ease-in-out forwards;
-  animation-delay: 0.3s;
+  animation: toDoTextAnimation 0.35s ease-in-out forwards;
+  animation-delay: 0.35s;
 }
 @keyframes toDoTextAnimation {
   from {
@@ -582,11 +517,11 @@ main {
   }
 }
 .toDo-text--done {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--bg-white);
   text-decoration-line: line-through;
 }
 .toDo-text::-webkit-scrollbar {
-  color: rgba(0, 0, 0, 0);
+  color: var(--alpha-zero);
   height: 0;
 }
 .bgImage--basic {
@@ -626,14 +561,14 @@ main {
 }
 @keyframes shineTextAnimation {
   0% {
-    color: rgba(255, 255, 255, 0.4);
-    background-color: rgba(0, 0, 0, 0.4);
+    color: var(--bg-white);
+    background-color: var(--bg-black);
   }
   60% {
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--bg-white);
   }
   100% {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: var(--alpha-zero);
   }
 }
 .arrow-icon {
@@ -649,7 +584,7 @@ main {
   cursor: pointer;
 }
 .spin-y-180 {
-  animation: spinArrowAnimation 0.3s ease-in-out;
+  animation: spinArrowAnimation 0.35s ease-in-out;
 }
 @keyframes spinArrowAnimation {
   from {
@@ -663,7 +598,7 @@ main {
   position: fixed;
   top: 0;
   bottom: auto;
-  animation: apearArrowAnimation 0.3s ease-in-out;
+  animation: apearArrowAnimation 0.35s ease-in-out;
 }
 @keyframes apearArrowAnimation {
   from {
@@ -678,7 +613,7 @@ main {
   top: 0;
   left: 0;
   z-index: 4;
-  background-color: var(--black);
+  background-color: var(--bg-black);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -702,9 +637,6 @@ main {
 .show-image-screen__row-top * {
   position: relative;
   z-index: 4;
-}
-.show-image-screen__book-mark:hover {
-  color: #ffed6d;
 }
 .show-image-screen__times {
   font-size: 28px;
@@ -775,7 +707,7 @@ main {
   display: flex;
   justify-content: space-between;
   font-size: 30px;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--bg-white);
   padding: 0 3px;
   z-index: 0;
 }
@@ -786,7 +718,7 @@ main {
   color: var(--white);
 }
 footer {
-  background-color: var(--black);
+  background-color: var(--bg-black);
   display: flex;
   flex-direction: column;
   padding: 20px 15px;
@@ -806,15 +738,16 @@ footer > div:first-child {
   justify-content: center;
   align-items: center;
   width: 140px;
-  height: 40px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 17px;
+  height: var(--input-height);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  font-family: "Quicksand", sans-serif;
+  font-size: var(--font-size);
   border: none;
   border-right: 2px solid rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   background-color: var(--white);
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--black);
   outline: none;
   cursor: pointer;
   padding-left: 15px;
@@ -823,13 +756,13 @@ footer > div:first-child {
   width: 17px;
   height: 17px;
   border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--bg-black);
   margin-right: 4px;
 }
 .check-box-quadrangle i {
   opacity: 0;
   position: relative;
-  top: -5px;
+  top: -7px;
   color: rgba(0, 0, 0, 0.7);
   font-size: 18px;
 }
@@ -840,19 +773,20 @@ footer > div:first-child {
 .link-form {
   position: relative;
   width: 100%;
-  height: 40px;
+  height: var(--input-height);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .image-url-form input,
 .link-form input {
-  font-family: "Open Sans", sans-serif;
-  font-size: 17px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  font-family: "Quicksand", sans-serif;
+  font-size: var(--font-size);
   width: 100%;
   height: 100%;
   background-color: var(--white);
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--black);
   outline: none;
   padding: 0 30px 0 5px;
 }
@@ -874,9 +808,9 @@ footer > div:first-child {
 .times {
   position: absolute;
   right: 25px;
-  font-size: 18px;
+  font-size: var(--font-size);
   color: rgba(0, 0, 0, 0.7);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.35s ease-in-out;
   cursor: pointer;
 }
 .times:hover {
@@ -899,31 +833,31 @@ footer > div:first-child {
 }
 .image-box__image {
   width: 100%;
-  border-radius: 10px;
+  border-radius: var(--radius);
   cursor: pointer;
+  margin-bottom: 2px;
 }
 .image-box__btns {
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--white);
-  font-size: 20px;
+  font-size: var(--font-size);
   padding: 0 10px;
 }
 .image-box__btns > div {
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: var(--radius);
   cursor: pointer;
 }
 .image-box__btns > div > span {
   display: flex;
   align-items: center;
-  transform: translateY(2.5px);
 }
 .check-box {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   border: 2px solid var(--white);
   border-radius: 50%;
   margin-right: 8px;
