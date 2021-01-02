@@ -4,9 +4,9 @@
     <link rel="stylesheet" href="index.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Momentun</title>
+    <title>Imagentum</title>
     <meta property="og:image" content="images/ogimage.jpg" />
-    <meta property="og:title" content="Momentun" />
+    <meta property="og:title" content="Imagentum" />
     <meta property="og:description" content="Momentum in your life" />
   </head>
 
@@ -42,6 +42,10 @@
           <div class="icon-box-bar"></div>
         </div>
         <div class="column__column">
+          <div class="link-btn">
+            <i class="fas fa-link"></i>
+            <span>link</span>
+          </div>
           <div class="js-img-name-text">
             <span class="js-img-name"></span
             ><span class="unsplash cursor--pointer">-unsplash</span>
@@ -83,7 +87,7 @@
     <img class="bgImage--basic bgImage--z-index--2">
     <div class="show-image-screen hidden">
       <div class="show-image-screen__row-top">
-        <i class="far fa-bookmark show-image-screen__book-mark"></i>
+        <i></i>
         <i class="fas fa-times show-image-screen__times"></i>
       </div>
       <div class="show-image-screen__row-center">
@@ -103,14 +107,55 @@
           RANDOM
         </button>
         <form class="image-url-form">
-          <input required type="url" placeholder="Write a link" />
-          <i class="fas fa-plus times image-url-form__times"></i>
+          <input class="input--border-right-radius" required type="url" placeholder="Write a link" />
         </form>
+        <form class="link-form none">
+          <input class="input--not-border-radius link-name-input" required type="text" placeholder="Write a name" />
+          <input class="input--border-right-radius link-url-input" required type="url" placeholder="Write a link" />
+          <input class="none" type="submit">
+        </form>
+        <i class="fas fa-plus times image-url-form__times"></i>
       </div>
       <div class="image-columns">
         <div class="image-column1"></div>
         <div class="image-column2"></div>
       </div>
+      <ul class="link-list none">
+        <!-- <li>
+          <div class="link--modify none">
+            <form class="link-form--modify">
+              <input class="link-url-input--modify" required type="url" placeholder="Write a link" />
+              <input class="link-name-input--modify" required type="text" placeholder="Write a name" />
+              <input class="none" type="submit">
+            </form>
+          </div>
+          <div class="link">
+            여기 아래꺼에 src, :hover - >backgroundColor주기
+            <div class="link__text link-name">
+              <span>lol my website</span>
+            </div>
+            <div class="link__text link-url">
+              <span>file:///C:/Users/yujih/Desktop/momentun/index.html</span>
+            </div>
+            넓이 50 : 50하기
+                        여기는 url, name구분해서 inner하기
+          </div>
+          <div class="link-more-btn active">
+            <i class="fas fa-ellipsis-v"></i>
+            linkmorebtn은 displayflex하기
+            몰버튼은 active시 가운데서 왼쪽으로 나오게 하기
+            버튼들은 positionabsolute학ㅣ
+            <div class="link-more-btn__btns">
+              <div class="link-modify-btn">
+                <span>Modify</span>
+              </div>
+              <div class="link-delete-btn">
+                <span>Delete</span>
+              </div>
+            </div>
+          </div>
+        </li> -->
+      </ul>
     </footer>
     <script src="https://kit.fontawesome.com/fbdaada10a.js" crossorigin="anonymous"></script>
     <script src="clock.js"></script>
@@ -121,5 +166,6 @@
     <script src="screen.js"></script>
     <script src="scroll.js"></script>
     <script src="load-image.js"></script>
+    <script src="link.js"></script>
   </body>
 </html>
