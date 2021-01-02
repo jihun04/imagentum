@@ -11,7 +11,8 @@ INPUT_BORDERRIGHTRADIUS_CN = "input--border-right-radius",
 INPUT_NOTBORDERRADIUS_CN = "input--not-border-radius",
 LINKS_LS = "links";
 
-let links = [];
+let links = [],
+newLinkId = 0;
 
 function saveLinks() {
   localStorage.setItem(LINKS_LS, JSON.stringify(links))
@@ -22,7 +23,7 @@ function genLinkId(id) {
     return id === link.id
   })
   if(sameId.length === 0) {
-    return id
+    newLinkId = id
   } else {
     genLinkId(id + 1);
   }
@@ -34,12 +35,6 @@ function addLink(event) {
   const nameValue = linkNameInput.value;
   linkUrlInput.value = "";
   linkNameInput.value = "";
-  const linkObj = {
-    name: nameValue,
-    url: urlValue
-  }
-  links.push(linkObj);
-  saveLinks();
   loadLink(nameValue, urlValue);
 }
 
@@ -65,10 +60,18 @@ function modifyLink() {
 
 }
 
+function linkModifyBtnClick() {
+
+}
+
+function linkDeleteBtnClick() {
+
+}
+
 function loadLink(name, url) {
   const li = document.createElement("li");
   const linkModify = document.createElement("div")
-  const link = document.createElement("div");
+  const link = document.createElement("a");
   const linkMoreBtn = document.createElement("div");
   const linkFormModify = document.createElement("form");
   const linkUrlInputModify = document.createElement("input");
@@ -85,7 +88,13 @@ function loadLink(name, url) {
   const linkDeleteBtn = document.createElement("div");
   const linkDeleteBtnSpan = document.createElement("span");
   const id = links.length + 1;
-  const newId = genLinkId(id);
+  const linkObj = {
+    name,
+    url
+  }
+  links.push(linkObj);
+  saveLinks();
+  genLinkId(id);
   linkModify.classList.add("link--modify");
   link.classList.add("link");
   linkMoreBtn.classList.add("link-more-btn");
@@ -103,11 +112,12 @@ function loadLink(name, url) {
   linkMoreBtns.classList.add(NONE);
   linkModifyBtn.classList.add("link-modify-btn");
   linkDeleteBtn.classList.add("link-delete-btn");
+  linkSubmitInput.classList.add(NONE);
+  link.href = url;
   linkNameSpan.innerText = name;
   linkUrlSpan.innerText = url;
   linkModifyBtnSpan.innerText = "Modify";
   linkDeleteBtnSpan.innerText = "Delete";
-  linkSubmitInput.classList.add(NONE);
   linkUrlInputModify.required = true;
   linkNameInputModify.required = true;
   linkUrlInputModify.type = "url";
@@ -115,7 +125,7 @@ function loadLink(name, url) {
   linkSubmitInput.type = "submit";
   linkUrlInputModify.placeholder = "Write a link";
   linkNameInputModify.placeholder = "Write a name";
-  li.id = newId;
+  li.id = newLinkId;
   li.appendChild(linkModify);
   li.appendChild(link);
   li.appendChild(linkMoreBtn);
@@ -134,6 +144,8 @@ function loadLink(name, url) {
   linkModifyBtn.appendChild(linkModifyBtnSpan);
   linkDeleteBtn.appendChild(linkDeleteBtnSpan);
   linkFormModify.addEventListener("submit", modifyLink);
+  linkModifyBtn.addEventListener("click", linkModifyBtnClick);
+  linkDeleteBtn.addEventListener("click", linkDeleteBtnClick);
   linkList.prepend(li);
 }
 
