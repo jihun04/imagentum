@@ -394,6 +394,7 @@ main {
   background-color: var(--alpha-zero);
   cursor: pointer;
   animation: appearToDoDelBtn 0.4s ease-in-out;
+  outline: none;
 }
 .js-toDoList--done li button:hover,
 .js-toDoList li button:hover {
