@@ -3,13 +3,19 @@ linkUrlInput = document.querySelector(".link-url-input"),
 linkNameInput = document.querySelector(".link-name-input"),
 imageColumns = document.querySelector(".image-columns"),
 linkList = document.querySelector(".link-list"),
-linkForm = document.querySelector(".link-form");
+linkForm = document.querySelector(".link-form"),
+footer = document.querySelector("footer");
 
 const LINKSTATE_LS = "link-state",
 LINKBTN_ACTIVE_CN = "link-btn--active",
 INPUT_BORDERRIGHTRADIUS_CN = "input--border-right-radius",
 INPUT_NOTBORDERRADIUS_CN = "input--not-border-radius",
-LINKS_LS = "links";
+FOOTERLISTFADEIN_CN = "footer__list-fadein",
+FOOTERLISTFADEOUT_CN = "footer__list-fadeout",
+FOOTERLISTFADEOUTEND_CN = "footer__list-fadeout-end",
+LINKS_LS = "links",
+FOOTEROTHERHEIGHT = 60,
+FORMHEIGHT = 40;
 
 let links = [],
 newLinkId = 0;
@@ -38,22 +44,51 @@ function addLink(event) {
   loadLink(nameValue, urlValue);
 }
 
+function handleFadeoutEnd() {
+  const loadedLinkState = localStorage.getItem(LINKSTATE_LS);
+  if(loadedLinkState === "active") {
+    imageColumns.classList.add(FOOTERLISTFADEOUTEND_CN);
+    if(footer.style.height !== "auto") {
+      footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + linkList.clientHeight}px`;
+    }
+  } else {
+    linkList.classList.add(FOOTERLISTFADEOUTEND_CN);
+    if(footer.style.height !== "auto") {
+      footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + imageColumns.clientHeight}px`;
+    }
+  }
+}
+
 function eraseLinks() {
+  if(linkList.clientHeight > imageColumns.clientHeight) {
+    footer.style.height = `${footer.clientHeight}px`;
+  }
   linkBtn.classList.remove(LINKBTN_ACTIVE_CN);
   linkForm.classList.add(NONE);
+  linkList.classList.add(FOOTERLISTFADEOUT_CN);
+  linkList.classList.remove(FOOTERLISTFADEIN_CN);
   imageUrlForm.classList.remove(NONE);
-  imageColumns.classList.remove(NONE);
-  linkList.classList.add(NONE);
+  imageColumns.classList.remove(FOOTERLISTFADEOUT_CN);
+  imageColumns.classList.remove(FOOTERLISTFADEOUTEND_CN);
+  imageColumns.classList.add(FOOTERLISTFADEIN_CN);
   localStorage.setItem(LINKSTATE_LS, "unactive");
+  linkList.addEventListener("animationend", handleFadeoutEnd);
 }
 
 function paintLinks() {
+  if(linkList.clientHeight < imageColumns.clientHeight) {
+    footer.style.height = `${footer.clientHeight}px`;
+  }
   linkBtn.classList.add(LINKBTN_ACTIVE_CN);
   linkForm.classList.remove(NONE);
+  linkList.classList.remove(FOOTERLISTFADEOUT_CN);
+  linkList.classList.remove(FOOTERLISTFADEOUTEND_CN);
+  linkList.classList.add(FOOTERLISTFADEIN_CN);
   imageUrlForm.classList.add(NONE);
-  imageColumns.classList.add(NONE);
-  linkList.classList.remove(NONE);
+  imageColumns.classList.add(FOOTERLISTFADEOUT_CN);
+  imageColumns.classList.remove(FOOTERLISTFADEIN_CN);
   localStorage.setItem(LINKSTATE_LS, "active");
+  imageColumns.addEventListener("animationend", handleFadeoutEnd);
 }
 
 function modifyLink() {
@@ -153,6 +188,8 @@ function loadLinkState() {
   const loadedLinkState = localStorage.getItem(LINKSTATE_LS);
   if(loadedLinkState === "active") {
     paintLinks();
+  } else {
+    eraseLinks();
   }
 }
 
