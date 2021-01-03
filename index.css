@@ -864,6 +864,18 @@ footer > *:first-child {
   justify-content: space-evenly;
   margin-bottom: 10px;
   font-size: var(--font-size);
+  animation: linkLIAppearAnimation 0.35s ease-in-out, fadeIn 0.35s ease-in-out;
+}
+@keyframes linkLIAppearAnimation {
+  0% {
+    height: 0;
+  }
+  50% {
+    height: 22px;
+  }
+  100% {
+    height: auto;
+  }
 }
 .link--modify {
   width: 90vw;
@@ -903,7 +915,7 @@ footer > *:first-child {
   transition: all 0.35s ease-in-out;
 }
 .link:hover {
-  transform: scale(1.01) rotateX(25deg) translateY(-1.5px);
+  transform: scale(1.01) rotateX(20deg) translateY(-1.5px);
   box-shadow: 0 5px 5px -0.1em var(--bg-black);
 }
 .link:visited {
@@ -923,6 +935,7 @@ footer > *:first-child {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 .link-more-btn > i {
   color: var(--white);
@@ -930,29 +943,67 @@ footer > *:first-child {
   cursor: pointer;
   border-radius: 50%;
 }
+.link-more-clicked + .link-more-btn__btns {
+  animation: linkMoreClicked 0.35s ease-in-out forwards;
+}
+.link-more-unclicked + .link-more-btn__btns {
+  animation: linkMoreUnclicked 0.35s ease-in-out forwards;
+}
+@keyframes linkMoreClicked {
+  from {
+    opacity: 0;
+    transform: translateY(var(--translate-y-up));
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+  }
+}
+@keyframes linkMoreUnclicked {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+    z-index: 2;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(var(--translate-y-up));
+    visibility: hidden;
+  }
+}
 .link-more-btn__btns {
   position: absolute;
-  bottom: -58px;
+  right: 30px;
+  top: -52px;
   width: 90px;
   height: 80px;
   background-color: var(--bg-black);
   color: var(--white);
   border-radius: var(--radius);
-  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 2;
 }
 .link-more-btn__btns > div {
   margin: 3px 0;
-  border-radius: var(--radius);
-  padding: 3px 5px;
+  width: 78px;
+  height: 30px;
+  border-radius: 6px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.35s ease-in-out;
 }
 .link-more-btn__btns > div:hover {
   background-color: var(--bg-white);
+}
+.link-more-btn__btns > div > span {
+  text-align: center;
 }
 .footer__list-fadein {
   animation: fadeIn 0.35s ease-in-out forwards,

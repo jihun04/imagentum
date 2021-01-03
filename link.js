@@ -15,7 +15,9 @@ FOOTERLISTFADEOUT_CN = "footer__list-fadeout",
 FOOTERLISTFADEOUTEND_CN = "footer__list-fadeout-end",
 LINKS_LS = "links",
 FOOTEROTHERHEIGHT = 60,
-FORMHEIGHT = 40;
+FORMHEIGHT = 40,
+LINKMORE_CLICKED_CN = "link-more-clicked",
+LINKMORE_UNCLICKED_CN = "link-more-unclicked";
 
 let links = [],
 newLinkId = 0;
@@ -41,6 +43,9 @@ function addLink(event) {
   const nameValue = linkNameInput.value;
   linkUrlInput.value = "";
   linkNameInput.value = "";
+  if(footer.style.height !== "auto") {
+    footer.style.height = "auto";
+  }
   loadLink(nameValue, urlValue);
 }
 
@@ -92,7 +97,33 @@ function paintLinks() {
 }
 
 function modifyLink() {
+  
+}
 
+function handleLinkMoreClick(event) {
+  const clicked = document.querySelector(`.${LINKMORE_CLICKED_CN}`);
+  let target = event.target;
+  if(target.localName === "i") {
+    target = target.parentNode;
+  }
+  console.log(clicked);
+  const linkMoreBtns = target.nextSibling;
+  if(clicked !== null) {
+    if(clicked === target) {
+      target.classList.add(LINKMORE_UNCLICKED_CN);
+      target.classList.remove(LINKMORE_CLICKED_CN);
+    } else {
+      clicked.classList.add(LINKMORE_UNCLICKED_CN);
+      clicked.classList.remove(LINKMORE_CLICKED_CN);
+      linkMoreBtns.classList.remove(NONE);
+      target.classList.remove(LINKMORE_UNCLICKED_CN);
+      target.classList.add(LINKMORE_CLICKED_CN);
+    }
+  } else {
+    linkMoreBtns.classList.remove(NONE);
+    target.classList.remove(LINKMORE_UNCLICKED_CN);
+    target.classList.add(LINKMORE_CLICKED_CN);
+  }
 }
 
 function linkModifyBtnClick() {
@@ -164,6 +195,7 @@ function loadLink(name, url) {
   li.appendChild(linkModify);
   li.appendChild(link);
   li.appendChild(linkMoreBtn);
+  li.appendChild(linkMoreBtns);
   linkModify.appendChild(linkFormModify);
   linkFormModify.appendChild(linkNameInputModify);
   linkFormModify.appendChild(linkUrlInputModify);
@@ -173,12 +205,12 @@ function loadLink(name, url) {
   linkName.appendChild(linkNameSpan);
   linkUrl.appendChild(linkUrlSpan);
   linkMoreBtn.appendChild(ellipsisIcon);
-  linkMoreBtn.appendChild(linkMoreBtns);
   linkMoreBtns.appendChild(linkModifyBtn);
   linkMoreBtns.appendChild(linkDeleteBtn);
   linkModifyBtn.appendChild(linkModifyBtnSpan);
   linkDeleteBtn.appendChild(linkDeleteBtnSpan);
   linkFormModify.addEventListener("submit", modifyLink);
+  linkMoreBtn.addEventListener("click", handleLinkMoreClick);
   linkModifyBtn.addEventListener("click", linkModifyBtnClick);
   linkDeleteBtn.addEventListener("click", linkDeleteBtnClick);
   linkList.prepend(li);
