@@ -26,7 +26,7 @@ function getWeather(lat, lng) {
             weatherIcon.style.backgroundImage = `url('${iconSrc}')`;
             weatherDescriptionText.innerText = description;
         })
-        weather.innerText = `${temperature}° (${place})`;
+        weather.innerText = `${temperature}° | ${place}`;
         if(temperature >= 29) {
             temperatureIcon.className = "js-weather-icon";
             temperatureIcon.classList.add(FAS);

@@ -8,7 +8,6 @@ imageUrlInput = imageUrlForm.querySelector("input"),
 imgUrlFormTimes = document.querySelector(".image-url-form__times"),
 showImageScreen = document.querySelector(".show-image-screen"),
 showImageScreenRowCenter = showImageScreen.querySelector(".show-image-screen__row-center"),
-bookmark = showImageScreen.querySelector(".show-image-screen__bookmark"),
 showImageScreenTimes = showImageScreen.querySelector(".show-image-screen__times"),
 showImageScreenLeft = showImageScreen.querySelector(".show-image-screen__left"),
 showImageScreenRight = showImageScreen.querySelector(".show-image-screen__right");
@@ -24,7 +23,6 @@ CHECKED_CN = "checked",
 RANDOMON_CN = "random--on",
 NONEIMAGESRC_LS = "none-image-src",
 HIDDEN_CN = "hidden",
-BOOKMARK_LS = "bookmarks",
 SHOWEDIMAGE_CN = "showed-image",
 APPEARSHOWEDIMAGELEFT_CN = "appear-showed-image--left",
 DISAPPEARSHOWEDIMAGELEFT_CN = "disappear-showed-image--left",
@@ -35,7 +33,6 @@ let imageUrl = [],
 maxNumber = "",
 number = 1,
 imageSrc = [],
-bookmarks = [],
 newId = 0,
 currentShowedImageId = 0;
 
@@ -283,13 +280,6 @@ function addImage(event) {
   }
 }
 
-function loadBookmarks() {
-  const currentBookmarks = localStorage.getItem(BOOKMARK_LS);
-  if(currentBookmarks !== null) {
-    bookmarks = JSON.parse(currentBookmarks);
-  }
-}
-
 function loadImgUrlFormTimes() {
   const noneImageSrc = localStorage.getItem(NONEIMAGESRC_LS);
   if(noneImageSrc === "on") {
@@ -312,7 +302,6 @@ function init() {
   loadImage();
   loadRandomImage();
   loadImgUrlFormTimes();
-  loadBookmarks();
   randomBtn.addEventListener("click", handleRBtnClick);
   imageUrlForm.addEventListener("submit", addImage);
   imgUrlFormTimes.addEventListener("click", handleImgUrlFormTimesClick);
