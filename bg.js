@@ -247,8 +247,8 @@ function paintImage(imgNumber) {
         localStorage.setItem(CURRENTIMAGESRC_LS, src);
     } else {
         src = localStorage.getItem(CURRENTIMAGESRC_LS);
-        image.style.backgroundImage = `url('${src})`;
-        bgImageZIndexM2.style.backgroundImage = `url('${src})`;
+        image.style.backgroundImage = `url('${src}')`;
+        bgImageZIndexM2.style.backgroundImage = `url('${src}')`;
     }
     paintImageName(src);
 }
