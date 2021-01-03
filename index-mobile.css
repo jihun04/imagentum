@@ -22,10 +22,7 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 body {
-  position: relative;
   font-family: "Quicksand", sans-serif;
-  height: 100vh;
-  min-height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -38,9 +35,11 @@ body::-webkit-scrollbar {
   height: 0;
 }
 main {
+  position: relative;
   height: 100vh;
   width: 100vw;
   display: flex;
+  justify-content: center;
   box-shadow: inset 0 0 60px -2em var(--black);
 }
 .column {
@@ -506,16 +505,8 @@ main {
   color: var(--white);
   cursor: alias;
   opacity: 0;
-  animation: toDoTextAnimation 0.35s ease-in-out forwards;
+  animation: fadeIn 0.35s ease-in-out forwards;
   animation-delay: 0.35s;
-}
-@keyframes toDoTextAnimation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 .toDo-text--done {
   color: var(--bg-white);
@@ -530,21 +521,13 @@ main {
   left: 0;
   height: 100vh;
   width: 100vw;
-  animation: fadeIn 0.5s linear;
+  animation: fadeIn 0.5s ease-in-out;
   background-size: cover;
   background-position: center;
 }
 .bgImage {
   position: absolute;
   z-index: -1;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 .bgImage--z-index--2 {
   position: fixed;
@@ -722,17 +705,21 @@ footer {
   background-color: var(--bg-black);
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 20px 15px;
   width: 100vw;
+  position: relative;
+  transition: height 0.35s ease-in-out;
 }
-footer > div {
+footer > * {
   display: flex;
+  width: 100%;
 }
-footer > div:first-child {
+footer > *:first-child {
   align-items: center;
   margin-bottom: 20px;
   border-radius: 15px;
-  box-shadow: 0 10px 10px -0.4em rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 10px -0.5em var(--bg-black);
 }
 .random-btn {
   display: flex;
@@ -865,6 +852,70 @@ footer > div:first-child {
 }
 .checked {
   background-color: var(--white);
+}
+.link-list {
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+.link-list > li {
+  display: flex;
+  justify-content: space-evenly;
+}
+.link--modify {
+}
+.footer__list-fadein {
+  animation: fadeIn 0.35s ease-in-out forwards,
+    footerListAppearAnimation 0.35s ease-in-out forwards;
+}
+.footer__list-fadeout {
+  position: absolute;
+  padding: 0 15px;
+  top: 80px;
+  animation: fadeOut 0.35s ease-in-out forwards,
+    footerListDisappearAnimation 0.35s ease-in-out forwards;
+}
+.footer__list-fadeout-end * {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+@keyframes footerListAppearAnimation {
+  from {
+    transform: translateY(var(--translate-y-down));
+    visibility: hidden;
+  }
+  to {
+    transform: translateY(0);
+    visibility: visible;
+  }
+}
+@keyframes footerListDisappearAnimation {
+  from {
+    transform: translateY(0);
+    visibility: visible;
+  }
+  to {
+    transform: translateY(var(--translate-y-down));
+    visibility: hidden;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 .hidden {
   visibility: hidden;
