@@ -44,6 +44,7 @@ function handleUnsplashClick(event) {
     if(imageNameText.childElementCount >= 5) {
         clockContainer.style.opacity = 1;
         localStorage.setItem(CLOCKCOLOR_LS, "on");
+        alert("Click the clock");
     }
 }
 
