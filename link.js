@@ -131,10 +131,10 @@ function loadLink(name, url) {
   saveLinks();
   genLinkId(id);
   linkModify.classList.add("link--modify");
+  linkModify.classList.add(NONE);
   link.classList.add("link");
   linkMoreBtn.classList.add("link-more-btn");
   linkFormModify.classList.add("link-form--modify");
-  linkFormModify.classList.add(NONE);
   linkUrlInputModify.classList.add("link-url-input--modify");
   linkNameInputModify.classList.add("link-name-input--modify");
   linkName.classList.add("link__text");
@@ -165,8 +165,8 @@ function loadLink(name, url) {
   li.appendChild(link);
   li.appendChild(linkMoreBtn);
   linkModify.appendChild(linkFormModify);
-  linkFormModify.appendChild(linkUrlInputModify);
   linkFormModify.appendChild(linkNameInputModify);
+  linkFormModify.appendChild(linkUrlInputModify);
   linkFormModify.appendChild(linkSubmitInput);
   link.appendChild(linkName);
   link.appendChild(linkUrl);
