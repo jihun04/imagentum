@@ -67,9 +67,9 @@ function eraseLinks() {
   linkForm.classList.add(NONE);
   linkList.classList.add(FOOTERLISTFADEOUT_CN);
   linkList.classList.remove(FOOTERLISTFADEIN_CN);
-  imageColumns.classList.add(FOOTERLISTFADEOUTEND_CN);
   imageUrlForm.classList.remove(NONE);
   imageColumns.classList.remove(FOOTERLISTFADEOUT_CN);
+  imageColumns.classList.remove(FOOTERLISTFADEOUTEND_CN);
   imageColumns.classList.add(FOOTERLISTFADEIN_CN);
   localStorage.setItem(LINKSTATE_LS, "unactive");
   linkList.addEventListener("animationend", handleFadeoutEnd);
