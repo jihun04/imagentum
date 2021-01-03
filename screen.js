@@ -17,11 +17,28 @@ function loadScreenCss() {
     if(screenWidth <= 680 || screenHeight <= 650 && currentScreen !== "small") {
         headLink.href = MOBILECSS_FN;
         localStorage.setItem(SCREEN_LS, "small");
+    } else {
+        headLink.href = INDEXCSS_FN;
+        localStorage.setItem(SCREEN_LS, "big");
+    }
+}
+
+function handleResize() {
+    const currentScreen = localStorage.getItem(SCREEN_LS);
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    if(screenWidth <= 680 || screenHeight <= 650 && currentScreen !== "small") {
+        headLink.href = MOBILECSS_FN;
+        localStorage.setItem(SCREEN_LS, "small");
+    } else {
+        headLink.href = INDEXCSS_FN;
+        localStorage.setItem(SCREEN_LS, "big");
     }
 }
 
 function init() {
     loadScreenCss();
+    window.addEventListener("resize", handleResize);
 }
 
 init();
