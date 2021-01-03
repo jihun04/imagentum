@@ -113,6 +113,7 @@ main {
   cursor: pointer;
   z-index: 2;
   color: var(--white);
+  transition: all 0.35s ease-in-out;
 }
 .js-title {
   margin: 0;
