@@ -860,6 +860,7 @@ footer > *:first-child {
   padding: 0;
 }
 .link-list > li {
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 10px;
@@ -931,7 +932,6 @@ footer > *:first-child {
   height: 0;
 }
 .link-more-btn {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -975,7 +975,7 @@ footer > *:first-child {
 }
 .link-more-btn__btns {
   position: absolute;
-  right: 30px;
+  right: 4vw;
   top: -52px;
   width: 90px;
   height: 80px;
