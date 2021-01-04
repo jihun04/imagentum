@@ -16,6 +16,7 @@ FOOTERLISTFADEOUTEND_CN = "footer__list-fadeout-end",
 LINKS_LS = "links",
 FOOTEROTHERHEIGHT = 60,
 FORMHEIGHT = 40,
+FUCK = 2,
 LINKMORE_CLICKED_CN = "link-more-clicked",
 LINKMORE_UNCLICKED_CN = "link-more-unclicked";
 
@@ -54,7 +55,7 @@ function handleFadeoutEnd() {
   if(loadedLinkState === "active") {
     imageColumns.classList.add(FOOTERLISTFADEOUTEND_CN);
     if(footer.style.height !== "auto") {
-      footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + linkList.clientHeight}px`;
+      footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + linkList.clientHeight + FUCK}px`;
     }
   } else {
     linkList.classList.add(FOOTERLISTFADEOUTEND_CN);
@@ -190,7 +191,7 @@ function linkDeleteBtnClick(event) {
   linkList.removeChild(li);
   links = cleanLinks;
   saveLinks();
-  footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + linkList.clientHeight}px`;
+  footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + linkList.clientHeight + FUCK}px`;
   linkMoreBtn.classList.add(LINKMORE_UNCLICKED_CN);
   linkMoreBtn.classList.remove(LINKMORE_CLICKED_CN);
 }
