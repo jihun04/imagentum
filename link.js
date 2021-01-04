@@ -184,11 +184,13 @@ function linkDeleteBtnClick(event) {
   const linkMoreBtn = target.parentNode.previousSibling;
   const li = linkMoreBtn.parentNode;
   const cleanLinks = links.filter(function(link) {
-    return li.id !== link.id
+    return parseInt(li.id) !== link.id
   })
+  console.log(cleanLinks);
   linkList.removeChild(li);
   links = cleanLinks;
   saveLinks();
+  footer.style.height = `${FOOTEROTHERHEIGHT + FORMHEIGHT + linkList.clientHeight}px`;
   linkMoreBtn.classList.add(LINKMORE_UNCLICKED_CN);
   linkMoreBtn.classList.remove(LINKMORE_CLICKED_CN);
 }
