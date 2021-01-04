@@ -871,7 +871,7 @@ footer > *:first-child {
     height: 0;
   }
   50% {
-    height: 22px;
+    height: 20px;
   }
   100% {
     height: auto;
@@ -922,6 +922,7 @@ footer > *:first-child {
   color: var(--white);
 }
 .link > div {
+  height: 20px;
   width: 50%;
   overflow-x: auto;
   margin: var(--input-padding);
