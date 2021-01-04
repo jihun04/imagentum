@@ -96,8 +96,23 @@ function paintLinks() {
   imageColumns.addEventListener("animationend", handleFadeoutEnd);
 }
 
-function modifyLink() {
-  
+function modifyLink(event) {
+  event.preventDefault();
+  const target = event.target;
+  const linkNameInputModify = target.childNodes[0];
+  const linkUrlInputModify = target.childNodes[1];
+  const nameValue = linkNameInputModify.value;
+  const urlValue = linkUrlInputModify.value;
+  const linkModify = target.parentNode;
+  const link = linkModify.nextSibling;
+  const linkName = link.firstChild;
+  const linkUrl = link.lastChild;
+  linkNameInputModify.value = "";
+  linkUrlInputModify.value = "";
+  linkName.firstChild.innerText = nameValue;
+  linkUrl.firstChild.innerText = urlValue;
+  linkModify.classList.add(NONE);
+  link.classList.remove(NONE);
 }
 
 function handleLinkMoreClick(event) {
@@ -106,32 +121,76 @@ function handleLinkMoreClick(event) {
   if(target.localName === "i") {
     target = target.parentNode;
   }
-  console.log(clicked);
   const linkMoreBtns = target.nextSibling;
   if(clicked !== null) {
     if(clicked === target) {
       target.classList.add(LINKMORE_UNCLICKED_CN);
       target.classList.remove(LINKMORE_CLICKED_CN);
     } else {
+      const listItem = target.parentNode;
+      const link = listItem.childNodes[1];
+      const linkModifyBtnSpan = linkMoreBtns.firstChild.firstChild;
       clicked.classList.add(LINKMORE_UNCLICKED_CN);
       clicked.classList.remove(LINKMORE_CLICKED_CN);
       linkMoreBtns.classList.remove(NONE);
       target.classList.remove(LINKMORE_UNCLICKED_CN);
       target.classList.add(LINKMORE_CLICKED_CN);
+      if(link.classList[1] === "none") {
+        linkModifyBtnSpan.innerText = "Cancel";
+      } else {
+        linkModifyBtnSpan.innerText = "Modify";
+      }
     }
   } else {
+    const listItem = target.parentNode;
+    const link = listItem.childNodes[1];
+    const linkModifyBtnSpan = linkMoreBtns.firstChild.firstChild;
     linkMoreBtns.classList.remove(NONE);
     target.classList.remove(LINKMORE_UNCLICKED_CN);
     target.classList.add(LINKMORE_CLICKED_CN);
+    if(link.classList[1] === "none") {
+      linkModifyBtnSpan.innerText = "Cancel";
+    } else {
+      linkModifyBtnSpan.innerText = "Modify";
+    }
   }
 }
 
-function linkModifyBtnClick() {
-
+function linkModifyBtnClick(event) {
+  let target = event.target;
+  if(target.localName === "span") {
+    target = target.parentNode;
+  }
+  const linkMoreBtn = target.parentNode.previousSibling;
+  const linkModifyBtnSpan = target.firstChild;
+  const link = linkMoreBtn.previousSibling;
+  const linkModify = link.previousSibling;
+  if(linkModifyBtnSpan.innerText !== "Cancel") {
+    link.classList.add(NONE);
+    linkModify.classList.remove(NONE);
+  } else {
+    link.classList.remove(NONE);
+    linkModify.classList.add(NONE);
+  }
+  linkMoreBtn.classList.add(LINKMORE_UNCLICKED_CN);
+  linkMoreBtn.classList.remove(LINKMORE_CLICKED_CN);
 }
 
-function linkDeleteBtnClick() {
-
+function linkDeleteBtnClick(event) {
+  let target = event.target;
+  if(target.localName === "span") {
+    target = target.parentNode;
+  }
+  const linkMoreBtn = target.parentNode.previousSibling;
+  const li = linkMoreBtn.parentNode;
+  const cleanLinks = links.filter(function(link) {
+    return li.id !== link.id
+  })
+  linkList.removeChild(li);
+  links = cleanLinks;
+  saveLinks();
+  linkMoreBtn.classList.add(LINKMORE_UNCLICKED_CN);
+  linkMoreBtn.classList.remove(LINKMORE_CLICKED_CN);
 }
 
 function loadLink(name, url) {
@@ -154,13 +213,14 @@ function loadLink(name, url) {
   const linkDeleteBtn = document.createElement("div");
   const linkDeleteBtnSpan = document.createElement("span");
   const id = links.length + 1;
+  genLinkId(id);
   const linkObj = {
+    id: newLinkId,
     name,
     url
   }
   links.push(linkObj);
   saveLinks();
-  genLinkId(id);
   linkModify.classList.add("link--modify");
   linkModify.classList.add(NONE);
   link.classList.add("link");
