@@ -96,8 +96,23 @@ function paintLinks() {
   imageColumns.addEventListener("animationend", handleFadeoutEnd);
 }
 
-function modifyLink() {
-  
+function modifyLink(event) {
+  event.preventDefault();
+  const target = event.target;
+  const linkNameInputModify = target.childNodes[0];
+  const linkUrlInputModify = target.childNodes[1];
+  const nameValue = linkNameInputModify.value;
+  const urlValue = linkUrlInputModify.value;
+  const linkModify = target.parentNode;
+  const link = linkModify.nextSibling;
+  const linkName = link.firstChild;
+  const linkUrl = link.lastChild;
+  linkNameInputModify.value = "";
+  linkUrlInputModify.value = "";
+  linkName.firstChild.innerText = nameValue;
+  linkUrl.firstChild.innerText = urlValue;
+  linkModify.classList.add(NONE);
+  link.classList.remove(NONE);
 }
 
 function handleLinkMoreClick(event) {
@@ -147,7 +162,6 @@ function linkModifyBtnClick(event) {
     target = target.parentNode;
   }
   const linkMoreBtn = target.parentNode.previousSibling;
-  // 여기는 모디파이만 되는곳
   const linkModifyBtnSpan = target.firstChild;
   const link = linkMoreBtn.previousSibling;
   const linkModify = link.previousSibling;
@@ -158,7 +172,6 @@ function linkModifyBtnClick(event) {
     link.classList.remove(NONE);
     linkModify.classList.add(NONE);
   }
-  // 여기는 모디파이만 되는곳
   linkMoreBtn.classList.add(LINKMORE_UNCLICKED_CN);
   linkMoreBtn.classList.remove(LINKMORE_CLICKED_CN);
 }
