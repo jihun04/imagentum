@@ -13,6 +13,7 @@
   --input-height: 40px;
   --input-padding: 10px;
   --font-size: 19px;
+  --toDo-box-width: 225px;
 }
 * {
   box-sizing: border-box;
@@ -225,13 +226,14 @@ main {
 }
 .toDo-box {
   overflow-y: auto;
+  overflow-x: visible;
   border-bottom-left-radius: var(--radius);
   background-color: var(--bg-black);
   font-size: var(--font-size);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 225px;
+  width: var(--toDo-box-width);
   z-index: 2;
 }
 .toDo-box::-webkit-scrollbar {
@@ -359,6 +361,7 @@ main {
 }
 .js-toDoList--done li,
 .js-toDoList li {
+  position: relative;
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -427,7 +430,28 @@ main {
     margin: 0;
     border: none;
     padding: 0;
+    font-size: 0;
   }
+}
+.date-box {
+  position: absolute;
+  right: var(--toDo-box-width);
+  height: 32px;
+  width: fit-content;
+  padding: 6px;
+  border-radius: var(--radius);
+  color: var(--white);
+  background-color: var(--bg-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s ease-in-out;
+  transform: translateY(var(--translate-y-up));
+  opacity: 0;
+}
+.date-box-hover {
+  transform: translateY(0);
+  opacity: 1;
 }
 .toDoLists-btns {
   border: 2px solid rgba(0, 0, 0, 2);
