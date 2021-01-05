@@ -187,7 +187,6 @@ function linkDeleteBtnClick(event) {
   const cleanLinks = links.filter(function(link) {
     return parseInt(li.id) !== link.id
   })
-  console.log(cleanLinks);
   linkList.removeChild(li);
   links = cleanLinks;
   saveLinks();
