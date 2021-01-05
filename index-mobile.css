@@ -924,12 +924,14 @@ footer > *:first-child {
 .link > div {
   height: 20px;
   width: 50%;
-  overflow-x: auto;
   margin: var(--input-padding);
   white-space: nowrap;
 }
 .link > div::-webkit-scrollbar {
   height: 0;
+}
+.link > div > span {
+  overflow-x: auto;
 }
 .link-more-btn {
   display: flex;
