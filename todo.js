@@ -18,12 +18,15 @@ DISAPPEARTODOBAR_CN = "disappear-toDo-bar",
 APPEARTODOLISTSBTNS = "appear-toDoLists-btns",
 DISAPPEARTODOLISTSBTNS = "disappear-toDoList-btns",
 TODOLISTSTATUS_LS = "toDoListStatus",
-CLICKEDLISTBTN_CN = "clicked-list-btn";
+CLICKEDLISTBTN_CN = "clicked-list-btn",
+DATEBOX_CN = "date-box",
+DATEBOXHOVER_CN = "date-box-hover";
 
 let listStatus = "";
 
-let toDos = [];
-let toDosDone = [];
+let toDos = [],
+toDosDone = [],
+newToDoId = "";
 
 function removeClickedToDoText(li) {
     toDoList.removeChild(li);
@@ -36,7 +39,7 @@ function removeClickedToDoText(li) {
 
 function handleToDoTextClick(event) {
     const text = event.target;
-    paintToDoDone(text.innerText)
+    paintToDo(text.innerText, "done", "null");
     if(text.className === "toDo-text") {
         const li = text.parentNode;
         removeClickedToDoText(li);
@@ -73,51 +76,103 @@ function saveTodos() {
     localStorage.setItem(TODOSDONE_LS, JSON.stringify(toDosDone));
 }
 
-function paintToDo(text) {
-    const li = document.createElement("li");
-    const delBtn = document.createElement("button");
-    const toDoText = document.createElement("div");
-    const span = document.createElement("span");
-    const newId = toDos.length + 1;
-    delBtn.innerText = "X";
-    delBtn.addEventListener("click", deleteToDo);
-    span.innerText = text;
-    li.appendChild(delBtn);
-    li.appendChild(toDoText);
-    li.id = newId;
-    toDoText.appendChild(span);
-    toDoText.classList.add(TODOTEXT_CN);
-    toDoText.addEventListener("click", handleToDoTextClick);
-    toDoList.appendChild(li);
-    const toDoObj = {
-        text: text,
-        id: newId
-    };
-    toDos.push(toDoObj);
-    saveTodos();
+function handleToDoMouseEnter(event) {
+    const target = event.target;
+    const dateBox = target.firstChild;
+    dateBox.classList.add(DATEBOXHOVER_CN);
 }
 
-function paintToDoDone(text) {
+function handleToDoMouseLeave(event) {
+    const target = event.target;
+    const dateBox = target.firstChild;
+    dateBox.classList.remove(DATEBOXHOVER_CN);
+}
+
+function  genToDoId(id, div) {
+    let currentToDos = "";
+    if(div === "done") {
+        currentToDos = toDosDone;
+    } else {
+        currentToDos = toDos;
+    }
+    const sameId = currentToDos.filter(function(toDo) {
+        return id === toDo.id
+    });
+    if(sameId.length === 0) {
+        newToDoId = id;
+    } else {
+        genToDoId(id + 1, div);
+    }    
+}
+
+function paintToDo(text, div, date) {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const toDoText = document.createElement("div");
     const span = document.createElement("span");
-    const newId = toDosDone.length + 1;
+    if(div === "done") {
+        const dateBox = document.createElement("div");
+        const dateSpan = document.createElement("span");
+        if(date === "null") {
+            const newDate = new Date();
+            const gotYear = newDate.getFullYear();
+            const gotMonth = newDate.getMonth() + 1;
+            const gotDate = newDate.getDate();
+            dateSpan.innerText = `${gotYear}-${gotMonth < 10 ? `0${gotMonth}` : gotMonth}-${gotDate < 10 ? `0${gotDate}` : gotDate}`;
+        } else {
+            dateSpan.innerText = date;
+        }
+        dateBox.classList.add(DATEBOX_CN);
+        dateBox.appendChild(dateSpan);
+        li.addEventListener("mouseenter", handleToDoMouseEnter);
+        li.addEventListener("mouseleave", handleToDoMouseLeave);
+        li.prepend(dateBox);
+        genToDoId(toDosDone.length + 1, div);
+        delBtn.addEventListener("click", deleteToDoDone);
+        toDoText.classList.add(TODOTEXTDONE_CN);
+        toDoListDone.prepend(li);
+    } else {
+        genToDoId(toDos.length + 1, div);
+        delBtn.addEventListener("click", deleteToDo);
+        toDoText.addEventListener("click", handleToDoTextClick);
+        toDoList.prepend(li);
+    }
+    const newId = newToDoId;
     delBtn.innerText = "X";
-    delBtn.addEventListener("click", deleteToDoDone);
     span.innerText = text;
     li.appendChild(delBtn);
     li.appendChild(toDoText);
     li.id = newId;
     toDoText.appendChild(span);
     toDoText.classList.add(TODOTEXT_CN);
-    toDoText.classList.add(TODOTEXTDONE_CN);
-    toDoListDone.prepend(li);
-    const toDoObjDone = {
-        text: text,
-        id: newId
-    };
-    toDosDone.push(toDoObjDone);
+    if(div === "done") {
+        if(date === "null") {
+            const newDate = new Date();
+            const gotYear = newDate.getFullYear();
+            const gotMonth = newDate.getMonth() + 1;
+            const gotDate = newDate.getDate();
+            const toDoObj = {
+                text: text,
+                id: newId,
+                date: `${gotYear}-${gotMonth < 10 ? `0${gotMonth}` : gotMonth}-${gotDate < 10 ? `0${gotDate}` : gotDate}`
+            };
+            toDosDone.push(toDoObj);
+        } else {
+            const toDoObj = {
+                text: text,
+                id: newId,
+                date
+            };
+            toDosDone.push(toDoObj);
+        }
+    } else {
+        const toDoObj = {
+            text: text,
+            id: newId,
+            date
+        };
+        toDos.push(toDoObj);
+    }
     saveTodos();
 }
 
@@ -126,7 +181,7 @@ function handleToDoSubmit(event) {
     event.preventDefault();
     if(currentListStatus === "toDo" || currentListStatus === "done") {
         const currentValue = toDoInput.value;
-        paintToDo(currentValue);
+        paintToDo(currentValue, "toDo", "null");
     }
     toDoInput.value = "";
 }
@@ -211,13 +266,13 @@ function loadToDos() {
     if(loadedToDos !== null) {
         const parsedToDos = JSON.parse(loadedToDos);
         parsedToDos.forEach(function(toDo) {
-            paintToDo(toDo.text);
+            paintToDo(toDo.text, "toDo", "null");
         })
     }
     if(loadedToDosDone !== null) {
         const parsedToDosDone = JSON.parse(loadedToDosDone);
         parsedToDosDone.forEach(function(toDo) {
-            paintToDoDone(toDo.text);
+            paintToDo(toDo.text, "done", toDo.date);
         })
     }
 }
