@@ -225,8 +225,7 @@ main {
   cursor: pointer;
 }
 .toDo-box {
-  overflow-y: auto;
-  overflow-x: visible;
+  overflow: auto;
   border-bottom-left-radius: var(--radius);
   background-color: var(--bg-black);
   font-size: var(--font-size);
@@ -525,7 +524,7 @@ main {
 }
 .toDo-text {
   width: 180px;
-  overflow-x: auto;
+  word-break: break-all;
   color: var(--white);
   cursor: alias;
   opacity: 0;
