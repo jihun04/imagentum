@@ -37,6 +37,15 @@ function removeClickedToDoText(li) {
     saveTodos();
 }
 
+function removeClickedToDoDoneText(li) {
+    toDoListDone.removeChild(li);
+    const cleanToDos = toDosDone.filter(function(toDo) {
+        return parseInt(li.id) !== toDo.id;
+    })
+    toDosDone = cleanToDos;
+    saveTodos();
+}
+
 function handleToDoTextClick(event) {
     const text = event.target;
     paintToDo(text.innerText, "done", "null");
@@ -46,6 +55,18 @@ function handleToDoTextClick(event) {
     } else {
         const li = text.parentNode.parentNode;
         removeClickedToDoText(li);
+    }
+}
+
+function handleToDoDoneTextClick(event) {
+    const text = event.target;
+    paintToDo(text.innerText, "toDo", "null");
+    if(text.classList[1] === "toDo-text") {
+        const li = text.parentNode;
+        removeClickedToDoDoneText(li);
+    } else {
+        const li = text.parentNode.parentNode;
+        removeClickedToDoDoneText(li);
     }
 }
 
@@ -123,19 +144,20 @@ function paintToDo(text, div, date) {
             dateSpan.innerText = date;
         }
         dateBox.classList.add(DATEBOX_CN);
-        dateBox.appendChild(dateSpan);
+        toDoText.classList.add(TODOTEXTDONE_CN);
         li.addEventListener("mouseenter", handleToDoMouseEnter);
         li.addEventListener("mouseleave", handleToDoMouseLeave);
-        li.prepend(dateBox);
-        genToDoId(toDosDone.length + 1, div);
         delBtn.addEventListener("click", deleteToDoDone);
-        toDoText.classList.add(TODOTEXTDONE_CN);
+        toDoText.addEventListener("click", handleToDoDoneTextClick);
+        dateBox.appendChild(dateSpan);
+        li.prepend(dateBox);
         toDoListDone.prepend(li);
+        genToDoId(toDosDone.length + 1, div);
     } else {
-        genToDoId(toDos.length + 1, div);
         delBtn.addEventListener("click", deleteToDo);
         toDoText.addEventListener("click", handleToDoTextClick);
         toDoList.prepend(li);
+        genToDoId(toDos.length + 1, div);
     }
     const newId = newToDoId;
     delBtn.innerText = "X";

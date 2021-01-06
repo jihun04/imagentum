@@ -108,12 +108,27 @@ function modifyLink(event) {
   const link = linkModify.nextSibling;
   const linkName = link.firstChild;
   const linkUrl = link.lastChild;
+  const li = linkModify.parentNode;
+  const cleanLinks = links.filter(function(link) {
+    return parseInt(li.id) !== link.id
+  });
+  links = cleanLinks;
+  const id = links.length + 1;
+  genLinkId(id);
+  const linkObj = {
+    id: newLinkId,
+    name: nameValue,
+    url: urlValue
+  };
+  links.push(linkObj);
+  link.href = urlValue;
   linkNameInputModify.value = "";
   linkUrlInputModify.value = "";
   linkName.firstChild.innerText = nameValue;
   linkUrl.firstChild.innerText = urlValue;
   linkModify.classList.add(NONE);
   link.classList.remove(NONE);
+  saveLinks();
 }
 
 function handleLinkMoreClick(event) {
@@ -205,9 +220,9 @@ function loadLink(name, url) {
   const linkNameInputModify = document.createElement("input");
   const linkSubmitInput = document.createElement("input");
   const linkName = document.createElement("div");
-  const linkNameSpan = document.createElement("span");
+  const linkNameP = document.createElement("p");
   const linkUrl = document.createElement("div");
-  const linkUrlSpan = document.createElement("span");
+  const linkUrlP = document.createElement("p");
   const ellipsisIcon = document.createElement("i");
   const linkMoreBtns = document.createElement("div");
   const linkModifyBtn = document.createElement("div");
@@ -242,8 +257,8 @@ function loadLink(name, url) {
   linkDeleteBtn.classList.add("link-delete-btn");
   linkSubmitInput.classList.add(NONE);
   link.href = url;
-  linkNameSpan.innerText = name;
-  linkUrlSpan.innerText = url;
+  linkNameP.innerText = name;
+  linkUrlP.innerText = url;
   linkModifyBtnSpan.innerText = "Modify";
   linkDeleteBtnSpan.innerText = "Delete";
   linkUrlInputModify.required = true;
@@ -264,8 +279,8 @@ function loadLink(name, url) {
   linkFormModify.appendChild(linkSubmitInput);
   link.appendChild(linkName);
   link.appendChild(linkUrl);
-  linkName.appendChild(linkNameSpan);
-  linkUrl.appendChild(linkUrlSpan);
+  linkName.appendChild(linkNameP);
+  linkUrl.appendChild(linkUrlP);
   linkMoreBtn.appendChild(ellipsisIcon);
   linkMoreBtns.appendChild(linkModifyBtn);
   linkMoreBtns.appendChild(linkDeleteBtn);
