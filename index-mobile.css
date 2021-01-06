@@ -113,6 +113,7 @@ main {
   cursor: pointer;
   z-index: 2;
   color: var(--white);
+  transition: all 0.35s ease-in-out;
 }
 .js-title {
   margin: 0;
@@ -530,14 +531,11 @@ main {
   opacity: 0;
   animation: fadeIn 0.35s ease-in-out forwards;
   animation-delay: 0.35s;
+  transform: translateY(2px);
 }
 .toDo-text--done {
   color: var(--bg-white);
   text-decoration-line: line-through;
-}
-.toDo-text::-webkit-scrollbar {
-  color: var(--alpha-zero);
-  height: 0;
 }
 .bgImage--basic {
   top: 0;
@@ -947,13 +945,21 @@ footer > *:first-child {
 .link > div {
   height: 20px;
   width: 50%;
-  overflow-y: visible;
-  overflow-x: auto;
+  overflow: hidden;
   margin: var(--input-padding);
   white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .link > div::-webkit-scrollbar {
   height: 0;
+}
+.link > div > p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .link-more-btn {
   display: flex;
