@@ -942,13 +942,12 @@ footer > *:first-child {
   color: var(--white);
 }
 .link > div {
-  height: 20px;
+  height: 40px;
   width: 50%;
   overflow: hidden;
-  margin: var(--input-padding);
+  margin: 0 var(--input-padding);
   white-space: nowrap;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .link > div::-webkit-scrollbar {
