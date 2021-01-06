@@ -226,7 +226,6 @@ main {
   cursor: pointer;
 }
 .toDo-box {
-  overflow: auto;
   border-bottom-left-radius: var(--radius);
   background-color: var(--bg-black);
   font-size: var(--font-size);
