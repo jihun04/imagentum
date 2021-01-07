@@ -104,6 +104,7 @@ main {
   }
 }
 .js-clock {
+  position: relative;
   display: flex;
   align-items: center;
   font-size: 70px;
@@ -118,6 +119,25 @@ main {
 .js-title {
   margin: 0;
   text-align: center;
+  transition: all 0.35s ease-in-out;
+}
+.clock-fadeout {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.clock-am-pm {
+  margin: 0;
+  font-size: var(--font-size);
+}
+.clock-exchange-btn {
+  font-size: var(--font-size);
+  position: absolute;
+  right: -50px;
+  transform: rotateZ(0);
+  transition: all 0.3s ease-in-out;
+}
+.clock-ex-btn-rotate {
+  transform: rotateZ(180deg);
 }
 .js-form input {
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
