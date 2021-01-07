@@ -1,38 +1,35 @@
-const headLink = document.querySelector("link");
+const head = document.querySelector("head");
 
-const 
-INDEXCSS_FN = "index.css",
-MOBILECSS_FN = "index-mobile.css",
-SCREEN_LS = "screen";
+const MOBILECSS_FN = "index-mobile.css";
 
 function loadScreenCss() {
-    const currentScreen = localStorage.getItem(SCREEN_LS);
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-    if(currentScreen === "big") {
-        headLink.href = INDEXCSS_FN;
-    } else if(currentScreen === "small") {
-        headLink.href = MOBILECSS_FN;
-    }
-    if(screenWidth <= 680 || screenHeight <= 650 && currentScreen !== "small") {
-        headLink.href = MOBILECSS_FN;
-        localStorage.setItem(SCREEN_LS, "small");
-    } else {
-        headLink.href = INDEXCSS_FN;
-        localStorage.setItem(SCREEN_LS, "big");
+    if(screenWidth <= 680 || screenHeight <= 650) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "index-mobile.css";
+        link.classList.add("stylesheet");
+        head.appendChild(link);
     }
 }
 
 function handleResize() {
-    const currentScreen = localStorage.getItem(SCREEN_LS);
+    const stylesheet = head.querySelector(".stylesheet");
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-    if(screenWidth <= 680 || screenHeight <= 650 && currentScreen !== "small") {
-        headLink.href = MOBILECSS_FN;
-        localStorage.setItem(SCREEN_LS, "small");
+    if(screenWidth <= 680 || screenHeight <= 650) {
+        if(stylesheet === null) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "index-mobile.css";
+            link.classList.add("stylesheet");
+            head.appendChild(link);
+        }
     } else {
-        headLink.href = INDEXCSS_FN;
-        localStorage.setItem(SCREEN_LS, "big");
+        if(stylesheet !== null) {
+            head.removeChild(stylesheet);
+        }
     }
 }
 

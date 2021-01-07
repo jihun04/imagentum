@@ -243,12 +243,24 @@ function handleListStatus() {
 function handleListToDoClick() {
     listStatus = "toDo";
     localStorage.setItem(TODOLISTSTATUS_LS, listStatus);
+    toDoList.classList.remove(CLOSELIST_CN);
+    toDoList.classList.add(OPENLIST_CN);
+    toDoBar.classList.remove(DISAPPEARTODOBAR_CN);
+    toDoBar.classList.add(APPEARTODOBAR_CN);
+    toDoListsBtns.classList.remove(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.add(DISAPPEARTODOLISTSBTNS);
     handleListStatus();
 }
 
 function handleListDoneClick() {
     listStatus = "done";
     localStorage.setItem(TODOLISTSTATUS_LS, listStatus);
+    toDoListDone.classList.remove(CLOSELIST_CN);
+    toDoListDone.classList.add(OPENLIST_CN);
+    toDoBar.classList.remove(DISAPPEARTODOBAR_CN);
+    toDoBar.classList.add(APPEARTODOBAR_CN);
+    toDoListsBtns.classList.remove(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.add(DISAPPEARTODOLISTSBTNS);
     handleListStatus();
 }
 

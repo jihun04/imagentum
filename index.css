@@ -126,6 +126,9 @@ main {
   opacity: 0;
 }
 .clock-am-pm {
+  position: absolute;
+  right: -40px;
+  bottom: 40px;
   margin: 0;
   font-size: var(--font-size);
 }
@@ -425,7 +428,7 @@ main {
 @keyframes appearToDoDelBtn {
   from {
     opacity: 0.5;
-    transform: translateX(-20px);
+    transform: translateX(-10px);
   }
   to {
     opacity: 1;
@@ -492,7 +495,7 @@ main {
     opacity: 0;
     border: none;
     margin-bottom: 0;
-    transform: translateY(50px);
+    transform: translateY(20px);
   }
   80% {
     margin-bottom: 20px;
@@ -506,12 +509,16 @@ main {
 }
 @keyframes disappearToDoListsBtns {
   0% {
-    transform: translateY(0px);
     opacity: 1;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    transform: translateY(0px);
+  }
+  50% {
+    height: 17px;
   }
   100% {
     visibility: hidden;
-    transform: translateY(-50px);
+    transform: translateY(-40px);
     opacity: 0;
     border: none;
     height: 0px;

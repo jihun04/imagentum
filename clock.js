@@ -173,7 +173,7 @@ function loadTimestamp() {
     } else if(currentTimestamp === "off") {
         disappearTimestamp();
     } else {
-        localStorage.setItem(TIMESTAMP_LS, "off");
+        localStorage.setItem(TIMESTAMP_LS, "on");
     }
 }
 
