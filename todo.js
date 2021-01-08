@@ -1,9 +1,10 @@
-const toDoForm = document.querySelector(".ja-toDoFrom"),
+const toDoBox = document.querySelector(".toDo-box"),
+toDoForm = toDoBox.querySelector(".ja-toDoFrom"),
 toDoInput = toDoForm.querySelector("input"),
-toDoList = document.querySelector(".js-toDoList"),
-toDoListDone = document.querySelector(".js-toDoList--done"),
-toDoBar = document.querySelector(".toDo-bar"),
-toDoListsBtns = document.querySelector(".toDoLists-btns"),
+toDoList = toDoBox.querySelector(".js-toDoList"),
+toDoListDone = toDoBox.querySelector(".js-toDoList--done"),
+toDoBar = toDoBox.querySelector(".toDo-bar"),
+toDoListsBtns = toDoBox.querySelector(".toDoLists-btns"),
 toDoListToDoBtn = toDoListsBtns.querySelector(".toDoLists-btns__toDo-btn"),
 toDoListDoneBtn = toDoListsBtns.querySelector(".toDoLists-btns__done-btn");
 
@@ -243,12 +244,24 @@ function handleListStatus() {
 function handleListToDoClick() {
     listStatus = "toDo";
     localStorage.setItem(TODOLISTSTATUS_LS, listStatus);
+    toDoList.classList.remove(CLOSELIST_CN);
+    toDoList.classList.add(OPENLIST_CN);
+    toDoBar.classList.remove(DISAPPEARTODOBAR_CN);
+    toDoBar.classList.add(APPEARTODOBAR_CN);
+    toDoListsBtns.classList.remove(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.add(DISAPPEARTODOLISTSBTNS);
     handleListStatus();
 }
 
 function handleListDoneClick() {
     listStatus = "done";
     localStorage.setItem(TODOLISTSTATUS_LS, listStatus);
+    toDoListDone.classList.remove(CLOSELIST_CN);
+    toDoListDone.classList.add(OPENLIST_CN);
+    toDoBar.classList.remove(DISAPPEARTODOBAR_CN);
+    toDoBar.classList.add(APPEARTODOBAR_CN);
+    toDoListsBtns.classList.remove(APPEARTODOLISTSBTNS);
+    toDoListsBtns.classList.add(DISAPPEARTODOLISTSBTNS);
     handleListStatus();
 }
 

@@ -42,6 +42,8 @@
         </div>
         <div class="js-clock">
           <h1 class="js-title"></h1>
+          <h2 class="clock-am-pm none"></h2>
+          <i class="fas fa-exchange-alt clock-exchange-btn"></i>
         </div>
         <form class="js-form none">
           <input required type="text" placeholder="What is your name" />
@@ -49,20 +51,74 @@
         <h4 class="js-greetings none"></h4>
       </div>
       <div class="column">
-        <div class="toDo-box">
-          <form class="ja-toDoFrom">
-            <input required type="text" placeholder="Write a to do" />
-          </form>
-          <div class="toDo-bar-box">
-            <div class="toDo-bar appear-toDo-bar">
-              <span>Close</span>
+        <div class="column__column">
+          <div class="toDo-box">
+            <form class="ja-toDoFrom">
+              <input required type="text" placeholder="Write a to do" />
+            </form>
+            <div class="toDo-bar-box">
+              <div class="toDo-bar appear-toDo-bar">
+                <span>Close</span>
+              </div>
+            </div>
+            <ul class="js-toDoList toDoList--close"></ul>
+            <ul class="js-toDoList--done toDoList--close"></ul>
+            <div class="toDoLists-btns appear-toDoLists-btns">
+              <button class="toDoLists-btns__toDo-btn">To do</button>
+              <button class="toDoLists-btns__done-btn">Done</button>
             </div>
           </div>
-          <ul class="js-toDoList toDoList--close"></ul>
-          <ul class="js-toDoList--done toDoList--close"></ul>
-          <div class="toDoLists-btns appear-toDoLists-btns">
-            <button class="toDoLists-btns__toDo-btn">To do</button>
-            <button class="toDoLists-btns__done-btn">Done</button>
+        </div>
+        <div class="column__column">
+          <div class="search-box">
+            <form class="search-form">
+              <div class="search-with">
+                <i class="fas fa-chevron-up"></i>
+                <div class="search-with-list-box">
+                  <div class="search-header">
+                    <span>search with</span>
+                  </div>
+                  <ul class="search-with-list">
+                    <li>
+                      <div class="search-with-itemmarker">
+                        <div class="dot"></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                      <span>google</span>
+                    </li>
+                    <li>
+                      <div class="search-with-itemmarker">
+                        <div class="dot"></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                      <span>google</span>
+                    </li>
+                    <li>
+                      <div class="search-with-itemmarker">
+                        <div class="dot"></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                      <span>google</span>
+                    </li>
+                    <li>
+                      <div class="search-with-itemmarker">
+                        <div class="dot"></div>
+                        <div></div>
+                        <div></div>
+                      </div>
+                      <span>google</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <input required type="text" />
+              <div class="search-btn">
+                <i class="fas fa-search"></i>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -107,8 +163,8 @@
       <ul class="link-list"></ul>
     </footer>
     <script src="https://kit.fontawesome.com/fbdaada10a.js" crossorigin="anonymous"></script>
-    <script src="clock.js"></script>
     <script src="greeting.js"></script>
+    <script src="clock.js"></script>
     <script src="todo.js"></script>
     <script src="bg.js"></script>
     <script src="weather.js"></script>
