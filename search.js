@@ -1,5 +1,7 @@
 const searchForm = document.querySelector(".search-form"),
 searchWith = searchForm.querySelector(".search-with"),
+searchWithBtn = searchWith.querySelector(".search-with-btn"),
+searchWithFirstText = searchWith.querySelector(".search-with-first-text"),
 searchWithIcon = searchWith.querySelector("i"),
 searchWithListBox = searchWith.querySelector(".search-with-list-box"),
 searchWithUL = searchWithListBox.querySelector(".search-with-list"),
@@ -10,7 +12,8 @@ SEARCHWITHLIST_LS = "search-with-list",
 SEARCHWITH_ACTIVE_CN = "search-with-active",
 SEARCHWITHLISTBOX_ACTIVE_CN = "search-with-list-box-active",
 SEARCHWITHITEMMARKER_CN = "search-with-itemmarker",
-DOT_CN = "dot";
+DOT_CN = "dot",
+SEARCHWITHFIRSTTEXTFADEOUT_CN = ".search-with-first-text-fadeout";
 
 let searchWithUrl = "",
 searchWithList = [],
@@ -35,8 +38,13 @@ function saveSearchWithUrl() {
   localStorage.setItem(SEARCHWITH_LS, searchWithUrl);
 }
 
-function loadSearchWithIcon() {
-  
+function loadSearchWithFirstText() {
+  const li = searchWithList.filter(function(li) {
+    return searchWithUrl === li.url;
+  })
+  const text = li[0].name;
+  const firstText = text.charAt(0);
+  searchWithFirstText.innerText = firstText;
 }
 
 function setSearchWithUrl(event) {
@@ -56,6 +64,7 @@ function setSearchWithUrl(event) {
   searchWithListBox.addEventListener("transitionend", function() {
     searchWithIcon.classList.remove(SEARCHWITH_ACTIVE_CN);
   })
+  loadSearchWithFirstText();
   saveSearchWithUrl();
 }
 
@@ -116,6 +125,7 @@ function loadSearchWith() {
   } else {
     searchWithUrl = loadedSearchWith;
   }
+  loadSearchWithFirstText();
 }
 
 function handleSearchWithClick() {
@@ -141,7 +151,7 @@ function handleSearch(event) {
 
 function init() {
   loadSearchWith();
-  searchWithIcon.addEventListener("click", handleSearchWithClick);
+  searchWithBtn.addEventListener("click", handleSearchWithClick);
   searchForm.addEventListener("submit", handleSearch);
 }
 

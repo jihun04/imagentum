@@ -40,7 +40,3 @@ function init() {
 }
 
 init();
-
-// ELEMENT_NODE !== parentNode
-// offsetTop: 726 -> -18 offsetTop은 엘리먼트로부터 탑까지 거리 여기선 div의 높이가 18이여서 744 - 18 = 726
-// window의 innerHeight는 브라우저 창의 높이, window.screen.availHeight(또는 Width): 824는 노트북 스크린의 높이
