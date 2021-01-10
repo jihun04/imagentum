@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 :root {
-  --bg-black: rgba(0, 0, 0, 0.45);
-  --bg-white: rgba(255, 255, 255, 0.45);
-  --black: rgba(0, 0, 0, 0.9);
-  --white: rgba(255, 255, 255, 0.9);
+  --bg-black: rgba(0, 0, 0, 0.5);
+  --bg-white: rgba(255, 255, 255, 0.5);
+  --black: rgba(0, 0, 0, 0.95);
+  --white: rgba(255, 255, 255, 0.95);
   --gray: rgba(255, 255, 255, 0.6);
   --alpha-zero: rgba(0, 0, 0, 0);
   --radius: 10px;
@@ -231,6 +231,7 @@ main {
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: all 0.35s ease-in-out;
 }
 .link-btn--active {
   color: var(--black);
@@ -577,9 +578,10 @@ main {
   color: var(--white);
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: var(--font-size);
   border-bottom: 1.5px solid var(--alpha-zero);
-  padding: 5px;
+  padding: 3px;
   transition: all 0.3s ease-in-out;
 }
 .search-with {
@@ -588,9 +590,25 @@ main {
   width: 20px;
   opacity: 1;
 }
-.search-with i:first-child {
+.search-with-btn {
+  opacity: 0;
   cursor: pointer;
-  color: var(--alpha-zero);
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-with-first-text {
+  transition: opacity 0.3s ease-in-out;
+}
+.search-with-first-text-fadeout {
+  opacity: 0;
+}
+.search-with-btn i {
+  font-size: 10px;
   transition: all 0.3s ease-in-out;
 }
 .search-with-active {
@@ -620,6 +638,9 @@ main {
 }
 .search-header {
   padding-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .search-with-list {
   margin: 0;
@@ -700,11 +721,11 @@ main {
 .search-form input:focus {
   color: var(--white);
 }
-.search-form:focus-within i:first-child {
-  color: var(--white);
+.search-form:focus-within .search-with-btn {
+  opacity: 1;
 }
-.search-form:hover i:first-child {
-  color: var(--white);
+.search-form:hover .search-with-btn {
+  opacity: 1;
 }
 .bgImage--basic {
   top: 0;
@@ -714,6 +735,8 @@ main {
   animation: fadeIn 0.5s ease-in-out;
   background-size: cover;
   background-position: center;
+  transition: all 3s ease-in-out;
+  will-change: background-image;
 }
 .bgImage {
   position: absolute;
@@ -801,7 +824,6 @@ main {
 .show-image-screen__row-top {
   position: absolute;
   top: 0;
-  padding: 20px 20px;
   font-size: 25px;
   display: flex;
   justify-content: space-between;
@@ -813,10 +835,15 @@ main {
   z-index: 4;
 }
 .show-image-screen__times {
-  font-size: 28px;
+  font-size: var(--font-size);
+  padding: 5px;
+  width: 45px;
+  border-bottom-left-radius: var(--radius);
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
 }
 .show-image-screen__times:hover {
-  color: #cd2238;
+  background-color: rgba(200, 50, 50, 0.9);
 }
 .show-image-screen__row-center {
   display: flex;
@@ -831,6 +858,7 @@ main {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  will-change: background-image;
 }
 .appear-showed-image--left {
   animation: appearShowedImageLeftA 1s ease-in-out;
@@ -892,14 +920,19 @@ main {
   color: var(--white);
 }
 footer {
-  background-color: var(--bg-black);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 15px;
   width: 100vw;
   position: relative;
-  transition: height 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.footer-bg-white {
+  background-color: var(--bg-white);
+}
+.footer-bg-black {
+  background-color: var(--bg-black);
 }
 footer > * {
   display: flex;
@@ -1081,23 +1114,23 @@ footer > *:first-child {
   height: var(--input-height);
   padding: var(--input-padding);
   background-color: var(--alpha-zero);
-  color: var(--white);
+  color: var(--black);
   outline: none;
 }
 .link-form--modify input::placeholder {
-  color: var(--white);
+  color: var(--black);
 }
 .link-name-input--modify {
   border: none;
-  border-right: 1px solid var(--white);
+  border-right: 1px solid var(--black);
 }
 .link-url-input--modify {
   border: none;
-  border-left: 1px solid var(--white);
+  border-left: 1px solid var(--black);
 }
 .link {
   width: 90vw;
-  color: var(--white);
+  color: var(--black);
   text-decoration: none;
   display: flex;
   border-bottom-left-radius: var(--radius);
@@ -1109,7 +1142,7 @@ footer > *:first-child {
   box-shadow: 0 5px 5px -0.1em var(--bg-black);
 }
 .link:visited {
-  color: var(--white);
+  color: var(--black);
 }
 .link > div {
   height: 40px;
@@ -1136,7 +1169,7 @@ footer > *:first-child {
   z-index: 2;
 }
 .link-more-btn > i {
-  color: var(--white);
+  color: var(--black);
   padding: 0 var(--input-padding);
   cursor: pointer;
   border-radius: 50%;

@@ -127,8 +127,9 @@ function prevShowedImage() {
     const newShowedImageSrc = imageSrc.filter(function(src) {
       return currentShowedImageId === src.id;
     })
-    newShowedImage.style.backgroundImage = `url('${newShowedImageSrc[0].src}')`
+    newShowedImage.style.backgroundImage = `url('${newShowedImageSrc[0].src}')`;
     newShowedImage.classList.add(APPEARSHOWEDIMAGELEFT_CN);
+    newShowedImage.classList.add(SHOWEDIMAGE_CN);
     showedImage.classList.add(DISAPPEARSHOWEDIMAGERIGHT_CN);
     showImageScreenRowCenter.prepend(newShowedImage);
     showedImage.addEventListener("animationend", handleShowedImgAEnd);
@@ -146,8 +147,9 @@ function nextShowedImage() {
     const newShowedImageSrc = imageSrc.filter(function(src) {
       return currentShowedImageId === src.id;
     })
-    newShowedImage.style.backgroundImage = `url('${newShowedImageSrc[0].src}')`
+    newShowedImage.style.backgroundImage = `url('${newShowedImageSrc[0].src}')`;
     newShowedImage.classList.add(APPEARSHOWEDIMAGERIGHT_CN);
+    newShowedImage.classList.add(SHOWEDIMAGE_CN);
     showedImage.classList.add(DISAPPEARSHOWEDIMAGELEFT_CN);
     showImageScreenRowCenter.prepend(newShowedImage);
     showedImage.addEventListener("animationend", handleShowedImgAEnd);

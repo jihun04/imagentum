@@ -18,7 +18,9 @@ FOOTEROTHERHEIGHT = 60,
 FORMHEIGHT = 40,
 FUCK = 2,
 LINKMORE_CLICKED_CN = "link-more-clicked",
-LINKMORE_UNCLICKED_CN = "link-more-unclicked";
+LINKMORE_UNCLICKED_CN = "link-more-unclicked",
+FOOTER_BGWHITE_CN = "footer-bg-white",
+FOOTER_BGBLACK_CN = "footer-bg-black";
 
 let links = [],
 newLinkId = 0;
@@ -77,6 +79,8 @@ function eraseLinks() {
   imageColumns.classList.remove(FOOTERLISTFADEOUT_CN);
   imageColumns.classList.remove(FOOTERLISTFADEOUTEND_CN);
   imageColumns.classList.add(FOOTERLISTFADEIN_CN);
+  footer.classList.remove(FOOTER_BGWHITE_CN);
+  footer.classList.add(FOOTER_BGBLACK_CN);
   localStorage.setItem(LINKSTATE_LS, "unactive");
   linkList.addEventListener("animationend", handleFadeoutEnd);
 }
@@ -93,6 +97,8 @@ function paintLinks() {
   imageUrlForm.classList.add(NONE);
   imageColumns.classList.add(FOOTERLISTFADEOUT_CN);
   imageColumns.classList.remove(FOOTERLISTFADEIN_CN);
+  footer.classList.remove(FOOTER_BGBLACK_CN);
+  footer.classList.add(FOOTER_BGWHITE_CN);
   localStorage.setItem(LINKSTATE_LS, "active");
   imageColumns.addEventListener("animationend", handleFadeoutEnd);
 }
