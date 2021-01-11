@@ -286,6 +286,8 @@ function loadImgUrlFormTimes() {
   const noneImageSrc = localStorage.getItem(NONEIMAGESRC_LS);
   if(noneImageSrc === "on") {
     bgImage.style.backgroundImage = "url('#')";
+  } else if(noneImageSrc === null) {
+    bgImage.style.backgroundImage = "url('#')";
   }
 }
 
