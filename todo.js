@@ -21,7 +21,8 @@ DISAPPEARTODOLISTSBTNS = "disappear-toDoList-btns",
 TODOLISTSTATUS_LS = "toDoListStatus",
 CLICKEDLISTBTN_CN = "clicked-list-btn",
 DATEBOX_CN = "date-box",
-DATEBOXHOVER_CN = "date-box-hover";
+DATEBOXHOVER_CN = "date-box-hover",
+REFRESHSTATUS_LS = "refresh-status";
 
 let listStatus = "";
 
@@ -312,6 +313,14 @@ function loadToDos() {
     }
 }
 
+function loadRefresh() {
+    const loadedRefreshStatus = localStorage.getItem(REFRESHSTATUS_LS);
+    if(loadedRefreshStatus === null) {
+        localStorage.setItem(REFRESHSTATUS_LS, "refreshed");
+        paintToDo("Refresh😊", "toDo", "null");
+    }
+}
+
 function init() {
     loadToDos();
     askListStatus();
@@ -319,5 +328,7 @@ function init() {
     toDoForm.addEventListener("submit", handleToDoSubmit);
     toDoForm.addEventListener("click", handleToDoFormClick);
     toDoBar.addEventListener("click", handleToDoBarClick);
+    loadRefresh();
 }
+
 init()
