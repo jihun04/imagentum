@@ -14,6 +14,7 @@
   --input-padding: 10px;
   --font-size: 19px;
   --toDo-box-width: 300px;
+  --my-color: rgb(58, 62, 73);
 }
 * {
   box-sizing: border-box;
@@ -1297,4 +1298,67 @@ footer > *:first-child {
 }
 .showing {
   display: block;
+}
+.splash-screen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--my-color);
+}
+.splash-screen--paint {
+  animation: fadeOut 0.5s ease-in-out forwards,
+    splashscreenAnimation 0.5s ease-in-out forwards;
+  animation-delay: 1.5s;
+}
+.splash-screen--erase {
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+.splash-screen__box {
+  width: 77.5px;
+  height: 77.5px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.splash-screen__text {
+  background-color: var(--my-color);
+}
+.splash-screen__text:first-child {
+  width: 8px;
+  height: 8px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  animation: splashscreenTextAnimation 1s ease-in-out;
+}
+.splash-screen__text:last-child {
+  width: 6px;
+  height: 40px;
+}
+@keyframes splashscreenAnimation {
+  from {
+    visibility: visible;
+  }
+  to {
+    visibility: hidden;
+  }
+}
+@keyframes splashscreenTextAnimation {
+  from {
+    transform: translateY(-25px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
