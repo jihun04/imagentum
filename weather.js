@@ -3,7 +3,7 @@ const weather = document.querySelector(".js-weather"),
     temperatureIcon = document.querySelector(".js-weather-icon"),
     weatherDescriptionText = document.querySelector(".weather-description__text");
 
-const API_KEY = "85a868745925286701deacff570bc78b"
+const API_KEY = "85a868745925286701deacff570bc78b";
 const COORDS = "coords",
     FAS = "fas",
     FAR = "far",
